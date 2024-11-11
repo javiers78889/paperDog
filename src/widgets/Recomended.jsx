@@ -6,7 +6,7 @@ import wallmart from '../svg/walmart-ar21.svg'
 
 export const Recomended = () => {
     return (
-        <div className="bg-gradient-to-b from-blue-500 to-purple-400 py-24 sm:py-32 ">
+        <div id='recomendadas' className="bg-gradient-to-b from-blue-500 to-purple-400 py-24 sm:py-32 ">
             <div className=' flex justify-center items-center'>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@ export const Recomended = () => {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    className="size-9"
+                    className="size-9 text-white"
                 >
                     <path
                         strokeLinecap="round"
@@ -24,7 +24,7 @@ export const Recomended = () => {
                 </svg>
             </div>
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <p className="mt-2 text-balance text-center text-4xl font-semibold tracking-tight text-gray-900 sm:text-6lg ">
+                <p className="mt-2 text-balance text-center text-4xl font-semibold tracking-tight text-yellow-300 sm:text-6lg ">
                     Tiendas Recomendadas
 
                 </p>

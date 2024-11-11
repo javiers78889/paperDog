@@ -8,27 +8,34 @@ import { Recomended } from './widgets/Recomended'
 import { Servicios } from './widgets/Servicios'
 import { Loading } from './widgets/Loading/Loading'
 import { useLoading } from './hooks/useLoading'
+import { Inicio } from './components/Inicio'
+import { Route, Routes } from 'react-router-dom'
+import { Tracking } from './widgets/Tracking/Tracking'
+import { UserContext } from './Context/UserContext'
+import { UserProvider } from './Context/UserProvider'
+import { useContext } from 'react'
 
 
 
 function App() {
-  const{isLoading}= useLoading()
+  const { isLoading } = useContext(UserContext)
 
   return (
     <>
-      {isLoading ? (
-        <Loading/>
-      ) : (
-        <div>
-          <Heroe />
-          <Slider />
-          <Servicios />
-          <Planes />
-          <ConteoPersonas />
-          <Recomended />
-          <Footer />
-        </div>
-      )}
+     
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <Heroe />
+            <Routes>
+              <Route path='/' element={<Inicio />} />
+              <Route path='/tracking' element={<Tracking />} />
+
+            </Routes>
+            <Footer />
+          </>
+        )}
     </>
   )
 }

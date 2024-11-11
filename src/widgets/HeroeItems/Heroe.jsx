@@ -3,13 +3,16 @@ import { useState } from 'react'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import paper from '../../img/ags.png'
+import { NavLink } from 'react-router-dom'
 const navigation = [
 
 
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Inicio', href: '#', current: true },
+  { name: 'Servicios', href: '#servicios', current: false },
+  { name: 'Planes', href: '#planes', current: false },
+  { name: 'Clientes', href: '#clientes', current: false },
+  { name: 'Recomendadas', href: '#recomendadas', current: false },
+  { name: 'Bodega', href: 'https://fuzioncargo.com/seguimiento-v2/', current: false },
 ]
 
 function classNames(...classes) {
@@ -57,13 +60,19 @@ export const Heroe = () => {
                     href={item.href}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
-                      item.current ? 'bg-purple-900 hover:scale-110  text-white'  : 'text-gray-900 font-semibold  hover:bg-purple-700 hover:scale-110 hover:text-white',
+                      item.current ? 'bg-purple-900 hover:scale-110  text-white' : 'text-gray-900 font-semibold  hover:bg-purple-700 hover:scale-110 hover:text-white',
                       'rounded-md px-3 py-2 text-normal font-medium ',
                     )}
                   >
                     {item.name}
                   </a>
                 ))}
+                <NavLink
+                  to='/tracking'
+                  className='bg-red-900 hover:scale-110 text-white rounded-md px-3 py-2 text-normal font-medium'
+                >
+                  Rastrear
+                </NavLink>
               </div>
             </div>
           </div>

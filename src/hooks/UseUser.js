@@ -16,12 +16,14 @@ export const UseUser = () => {
     }
     const onInput = async () => {
         setBuscando(true)
+        setRastreo(initTracking)
         try {
 
 
             const encontrado = await findPaquetes(tracking)
             const tracking_info = encontrado.data.accepted[0].track_info || {}
-            if (tracking_info) {
+    
+            if (Object.keys(encontrado).length > 0) {
 
                 setRastreo(tracking_info)
                 setBuscando(false)
@@ -35,18 +37,18 @@ export const UseUser = () => {
                 });
             }
         } catch (error) {
-         
+
         } finally {
             // Finalmente, después de terminar la búsqueda, se actualiza el estado
             setBuscando(false);
         }
-    
-}
-return {
-    onChange,
-    onInput,
-    tracking,
-    rastreo,
-    buscando
-}
+
+    }
+    return {
+        onChange,
+        onInput,
+        tracking,
+        rastreo,
+        buscando
+    }
 }

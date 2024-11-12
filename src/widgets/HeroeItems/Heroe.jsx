@@ -49,12 +49,12 @@ export const Heroe = () => {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <Link to= '/'>
-              <img
-                alt="Your Company"
-                src={paper}
-                className="h-20 w-auto"
-              />
+              <Link to='/'>
+                <img
+                  alt="Your Company"
+                  src={paper}
+                  className="h-20 w-auto"
+                />
               </Link>
             </div>
             <div className="hidden sm:ml-80 sm:mt-5 sm:block">
@@ -146,21 +146,38 @@ export const Heroe = () => {
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
           {navigation.map((item) => (
-            <DisclosureButton
+            item.to.startsWith('#') ? (
+              <button
               key={item.name}
-              as="a"
-              href={item.href}
+              onClick={() => handleScrollTo(item.to.slice(1))}  // Eliminar '#' al pasar como id
               aria-current={item.current ? 'page' : undefined}
               className={classNames(
                 item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                'block rounded-md px-3 py-2 text-base font-medium',
+                'block rounded-md px-3 py-2 text-base font-medium'
               )}
             >
               {item.name}
-            </DisclosureButton>
+            </button>
+            
+            ): (
+                <NavLink
+              key = {item.name}
+          as="a"
+          to={item.to}
+          aria-current={item.current ? 'page' : undefined}
+          className={classNames(
+            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+            'block rounded-md px-3 py-2 text-base font-medium',
+          )}
+            >
+          {item.name}
+        </NavLink>
+
+        )
+            
           ))}
-        </div>
-      </DisclosurePanel>
-    </Disclosure>
+      </div>
+    </DisclosurePanel>
+    </Disclosure >
   )
 }

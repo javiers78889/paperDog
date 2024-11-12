@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { findPaquetes } from "../Services/Tracking"
+import Swal from "sweetalert2"
 
 const initTracking = ''
 export const UseUser = () => {
@@ -15,21 +16,41 @@ export const UseUser = () => {
     }
     const onInput = async () => {
         setBuscando(true)
-        const encontrado = await findPaquetes(tracking)
-        if (encontrado) {
+        try {
 
-            setRastreo(encontrado.data.accepted[0].track_info)
-            setBuscando(false)
+
+            const encontrado = await findPaquetes(tracking)
+            const tracking_info = encontrado.data.accepted[0].track_info || {}
+            if (tracking_info) {
+
+                setRastreo(tracking_info)
+                setBuscando(false)
+            }
+            else {
+                setBuscando(false)
+                Swal.fire({
+                    title: "Lo sentimos!",
+                    text: "Paquete no Encontrado...",
+                    icon: "error"
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Error!",
+                text: "Hubo un problema al obtener la información.",
+                icon: "error"
+            });
+        } finally {
+            // Finalmente, después de terminar la búsqueda, se actualiza el estado
+            setBuscando(false);
         }
-        else {
-            setBuscando(false)
-        }
-    }
-    return {
-        onChange,
-        onInput,
-        tracking,
-        rastreo,
-        buscando
-    }
+    
+}
+return {
+    onChange,
+    onInput,
+    tracking,
+    rastreo,
+    buscando
+}
 }

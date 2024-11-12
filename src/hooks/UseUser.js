@@ -4,7 +4,9 @@ import { findPaquetes } from "../Services/Tracking"
 const initTracking = ''
 export const UseUser = () => {
     const [tracking, setTracking] = useState(initTracking)
+    const [buscando, setBuscando] = useState(false)
     const [rastreo, setRastreo] = useState(initTracking)
+
     const onChange = (event) => {
         console.log(event.target.value)
         setTracking(
@@ -12,15 +14,22 @@ export const UseUser = () => {
         );
     }
     const onInput = async () => {
+        setBuscando(true)
         const encontrado = await findPaquetes(tracking)
-        setRastreo(rastreo)
-        console.log('input')
-        console.log(encontrado)
+        if (encontrado) {
+
+            setRastreo(encontrado.data.accepted[0].track_info)
+            setBuscando(false)
+        }
+        else {
+            setBuscando(false)
+        }
     }
     return {
         onChange,
         onInput,
         tracking,
-        rastreo
+        rastreo,
+        buscando
     }
 }

@@ -5,9 +5,9 @@ import { UserContext } from "./UserContext"
 
 export const UserProvider = ({children}) => {
     const { isLoading } = useLoading()
-    const {onChange,onInput, tracking,rastreo}= UseUser()
+    const {onChange,onInput, tracking,rastreo,buscando}= UseUser()
   return (
-    <UserContext.Provider value={{isLoading, onChange,onInput,tracking,rastreo}}>
+    <UserContext.Provider value={{isLoading, onChange,onInput,tracking,rastreo,buscando}}>
         {children}
     </UserContext.Provider>
   )

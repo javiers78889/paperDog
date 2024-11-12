@@ -3,8 +3,10 @@ import { CalendarDaysIcon, HandRaisedIcon } from '@heroicons/react/24/outline'
 import { useContext } from 'react'
 import { UserContext } from '../../Context/UserContext'
 import { Decoracion } from './Decoracion'
+import { Resultado } from './Resultado'
+import ags from '../../img/ags.png'
 export const Tracking = () => {
-    const {onChange,onInput,rastreo,tracking }= useContext(UserContext)
+    const { onChange, onInput, rastreo, tracking, buscando } = useContext(UserContext)
     return (
         <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -38,11 +40,22 @@ export const Tracking = () => {
                             </button>
                         </div>
                     </div>
-                    {rastreo?(
-                        ''
+                    {rastreo ? (
+                        buscando ? (
 
-                    ):(<Decoracion/>)}
-                    
+                            <div className="flex items-center justify-center  ">
+                                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 border-t-transparent"><img src={ags} alt="" /></div>
+                            </div>
+
+                        ) : (
+                            <Resultado />
+
+                        )
+
+                    ) : (
+                        <Decoracion />
+                    )}
+
                 </div>
             </div>
             <div aria-hidden="true" className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6">

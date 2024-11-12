@@ -6,20 +6,20 @@ export const Decoracion = () => {
         <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
             <div className="flex flex-col items-start">
                 <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                    <CalendarDaysIcon aria-hidden="true" className="h-6 w-6 text-white" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="120" height="60"><path d="M60 55.395c-1.357-.604-12.147-5.25-15.632-8.15a15.92 15.92 0 0 1-5.743-12.779V9.345c5.93-3.15 13.104-4.74 21.375-4.74s15.41 1.6 21.375 4.74v25.093a15.93 15.93 0 0 1-5.734 12.788c-3.43 2.788-14.35 7.602-15.604 8.15z" fill="#ffb500"/><path d="M68.225 25.757c.046-2.71 2.272-4.873 4.98-4.842a6.35 6.35 0 0 1 4.071 1.208v3.225a4.97 4.97 0 0 0-3.336-1.515c-1.05 0-2.147.455-2.184 1.775s1.06 1.86 2.444 2.695c3.104 1.86 3.717 3.457 3.634 5.623a5.02 5.02 0 0 1-5.381 4.963 8.13 8.13 0 0 1-4.089-1.143v-3.4a5.92 5.92 0 0 0 3.55 1.515 1.97 1.97 0 0 0 2.221-2.072c0-1.162-.688-1.803-2.314-2.788-3.058-1.794-3.615-3.27-3.615-5.25zm-8.996-1.58c.413-.18.86-.273 1.3-.27 2.156 0 3.048 1.72 3.048 5.883s-1.022 6.022-3.16 6.022c-.413-.003-.822-.078-1.208-.223V24.178zm0 22.258H55.51V22.263a8.98 8.98 0 0 1 5-1.32c4.433 0 6.868 3.364 6.868 8.773s-2.37 9.136-6.506 9.136c-.565.01-1.13-.062-1.673-.214v7.788zM42.5 32.97V21.334h3.717v11.803c0 1.05.25 2.612 1.96 2.612.6.015 1.212-.15 1.73-.474v-13.94h3.717v16.07a9.86 9.86 0 0 1-5.576 1.487c-3.717 0-5.576-1.99-5.576-5.93zm-1.86 1.496c-.165 4.332 1.69 8.496 5.02 11.273 2.9 2.37 11.84 6.413 14.36 7.52 2.48-1.097 11.403-5.093 14.35-7.52a13.94 13.94 0 0 0 5.019-11.264v-24.6C66.96 8.722 52.267 9.43 40.632 20.098v14.368z" fill="#351c15"/></svg>
                 </div>
-                <dt className="mt-4 text-base font-semibold text-white">Weekly articles</dt>
+                <dt className="mt-4 text-base font-semibold text-white">Rastrea tus paquetes en USA</dt>
                 <dd className="mt-2 text-base/7 text-gray-400">
-                    Non laboris consequat cupidatat laborum magna. Eiusmod non irure cupidatat duis commodo amet.
+                    Rastrea tus paquetes de UPS,USPS,DHL,etc...
                 </dd>
             </div>
             <div className="flex flex-col items-start">
                 <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                    <HandRaisedIcon aria-hidden="true" className="h-6 w-6 text-white" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><path d="M5 0a5 5 0 0 0-5 5v54a5 5 0 0 0 5 5h54a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5z" fill="#e62e04"/><path d="M17.6 21.452c.245 1 .107 2.08.348 3.097.84-.615 1.4-1.63 1.285-2.687-.017-1.892-2.145-3.375-3.926-2.738-1.12.32-1.948 1.325-2.136 2.46-.224 1.3.557 2.63 1.718 3.224-.115-1.12-.384-2.3-.083-3.396.46-1.194 2.37-1.17 2.795.04zm33.138 1.356c.408-1.468-.48-3.17-1.936-3.64-1.4-.55-3.133.15-3.75 1.514-.688 1.263-.272 3.06.986 3.8.248-1.014.065-2.1.36-3.085.47-1.177 2.355-1.143 2.784.05.273 1.066.026 2.186-.077 3.262.854-.264 1.387-1.08 1.632-1.898z" fill="#b32100"/><path d="M46.4 21.396c-.296.995-.113 2.072-.36 3.085-.732 4.4-3.678 8.332-7.667 10.303a14.2 14.2 0 0 1-12.798-.016c-3.952-1.966-6.875-5.865-7.626-10.218-.24-1.018-.104-2.087-.348-3.097-.424-1.2-2.334-1.235-2.794-.04-.3 1.106-.03 2.277.083 3.396.84 5.44 4.48 10.325 9.412 12.75a17.34 17.34 0 0 0 14.635.346c5.333-2.303 9.32-7.446 10.173-13.2.103-1.076.35-2.197.076-3.262-.43-1.193-2.314-1.226-2.785-.05z" fill="#fff"/><path d="M5 0a5 5 0 0 0-5 5v9.5a5 5 0 0 1 5-5h54a5 5 0 0 1 5 5V5a5 5 0 0 0-5-5z" fill="#f90"/></svg>
                 </div>
-                <dt className="mt-4 text-base font-semibold text-white">No spam</dt>
+                <dt className="mt-4 text-base font-semibold text-white">Rastrea tus paquetes en China</dt>
                 <dd className="mt-2 text-base/7 text-gray-400">
-                    Officia excepteur ullamco ut sint duis proident non adipisicing. Voluptate incididunt anim.
+                    Rastrea tus paquetes de cainiao,Alibaba,Aliexpress,etc...
                 </dd>
             </div>
         </dl>

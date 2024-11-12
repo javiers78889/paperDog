@@ -25,20 +25,21 @@ export const Resultado = () => {
                 <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
                     <HandRaisedIcon aria-hidden="true" className="h-6 w-6 text-white" />
                 </div>
-                <dt className="mt-4 text-base font-semibold text-red-500">Dirección de envío</dt>
+                <dt className="mt-4 text-base font-semibold text-yellow-500">Dirección de Entrega</dt>
                 <dd className="mt-2 text-base/7 text-white">
-                    <span className='font-bold'>City:</span>{vendedor.city ? vendedor.city : ''},<br /> <span className='font-bold'>Pais:</span>{vendedor.country ? vendedor.country : ''}<br />  <span className='font-bold'> Codigo Postal:</span>{vendedor.postal_code ? vendedor.postal_code : ''}<br />  <span className='font-bold'>Estado:</span>{vendedor.state ? vendedor.state : ''}
+                    <span className='font-bold'>City:</span>{receptor.city ? receptor.city : ''},<br /> <span className='font-bold'>Pais:</span>{receptor.country ? receptor.country : ''}   <br /><span className='font-bold'>Codigo Postal:</span>{receptor.postal_code ? receptor.postal_code : ''} <br /> <span className='font-bold'>Estado:</span>{receptor.state ? receptor.state : ''}
                 </dd>
             </div>
             <div className="flex flex-col items-start">
                 <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
                     <HandRaisedIcon aria-hidden="true" className="h-6 w-6 text-white" />
                 </div>
-                <dt className="mt-4 text-base font-semibold text-yellow-500">Dirección de Entrega</dt>
+                <dt className="mt-4 text-base font-semibold text-red-500">Dirección de envío</dt>
                 <dd className="mt-2 text-base/7 text-white">
-                    <span className='font-bold'>City:</span>{receptor.city ? receptor.city : ''},<br /> <span className='font-bold'>Pais:</span>{receptor.country ? receptor.country : ''}   <br /><span className='font-bold'>Codigo Postal:</span>{receptor.postal_code ? receptor.postal_code : ''} <br /> <span className='font-bold'>Estado:</span>{receptor.state ? receptor.state : ''}
+                    <span className='font-bold'>City:</span>{vendedor.city ? vendedor.city : ''},<br /> <span className='font-bold'>Pais:</span>{vendedor.country ? vendedor.country : ''}<br />  <span className='font-bold'> Codigo Postal:</span>{vendedor.postal_code ? vendedor.postal_code : ''}<br />  <span className='font-bold'>Estado:</span>{vendedor.state ? vendedor.state : ''}
                 </dd>
             </div>
+          
         </dl>
     )
 }

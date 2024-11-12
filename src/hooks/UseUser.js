@@ -35,11 +35,7 @@ export const UseUser = () => {
                 });
             }
         } catch (error) {
-            Swal.fire({
-                title: "Error!",
-                text: "Hubo un problema al obtener la información.",
-                icon: "error"
-            });
+         
         } finally {
             // Finalmente, después de terminar la búsqueda, se actualiza el estado
             setBuscando(false);

@@ -11,38 +11,31 @@ const initialDatos = {
 }
 
 
-export const useValidation = () => {
 
+export const useValidation = () => {
+    const navigate = useNavigate()
     const [datos, setDatos] = useState(initialDatos)
     const { email, password } = datos
     const onInputChange = (event) => {
-        console.log(event.target.value)
         setDatos({ ...datos, [event.target.name]: event.target.value })
 
     }
     const onSubmit = async (event) => {
         event.preventDefault();
         const token = await autenticar(datos);
-        const decoded= jwtDecode(token)
+        if (token.length > 0) {
 
-        console.log(decoded)
+            const decoded = jwtDecode(token)
 
-   
+            sessionStorage.setItem('auth', JSON.stringify(decoded))
 
-
-   
-
-
-
-
+            navigate('/profile')
+        }
 
 
     }
     const logout = () => {
-        dispatch({
-            type: 'logout',
-            payload: storedUser.email
-        })
+
     }
     return {
         onInputChange,

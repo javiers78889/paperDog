@@ -1,15 +1,17 @@
-import axios from "axios"
+import axios from "axios";
 
-const ApiRegister = 'https://paperdogback.onrender.com/tracking'
+const ApiRegister = 'https://paperdogback.onrender.com/tracking';
+
 export const findPaquetes = async (number) => {
     try {
-        const registro = await axios.post(ApiRegister, {number})
-        return registro.data
+        // Enviar la solicitud con el número en el cuerpo como JSON
+        const registro = await axios.post(ApiRegister, { number }, {
+            headers: {
+                'Content-Type': 'application/json', // Asegúrate de que el servidor espera JSON
+            }
+        });
+        return registro.data;
     } catch (error) {
-        console.error(error)
-        
+        console.error("Error al realizar la solicitud:", error);
     }
-    
-
-    
-}
+};

@@ -14,6 +14,8 @@ import { Tracking } from './widgets/Tracking/Tracking'
 import { UserContext } from './Context/UserContext'
 import { UserProvider } from './Context/UserProvider'
 import { useContext } from 'react'
+import { Login } from './components/Login'
+import { Profile } from './components/Profile'
 
 
 
@@ -22,20 +24,36 @@ function App() {
 
   return (
     <>
-     
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <>
-            <Heroe />
-            <Routes>
-              <Route path='/' element={<Inicio />} />
-              <Route path='/tracking' element={<Tracking />} />
 
-            </Routes>
-            <Footer />
-          </>
-        )}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+
+          <Routes>
+            <Route path='/' element={
+              <>
+                <Heroe />
+                <Inicio />
+                <Footer />
+              </>
+            } />
+
+            <Route path='/tracking' element={
+              <>
+                <Heroe />
+                <Tracking />
+                <Footer />
+              </>
+            } />
+            <Route path='/login' element={<Login />}/>
+            <Route path='/profile' element={<Profile />}/>
+
+
+          </Routes>
+
+        </>
+      )}
     </>
   )
 }

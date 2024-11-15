@@ -10,7 +10,7 @@ export const Resultado = () => {
     const description = rastreo?.latest_event?.description || 'Sin descripción disponible' // Mensaje predeterminado para description
     const historial = Array.isArray(rastreo?.milestone) ? rastreo.milestone : []; // Default to an empty array if not an array
 
-    const empresa = rastreo?.tracking?.providers[0]?.provider|| 'Sin descripción disponible' // Mensaje predeterminado para description
+    const empresa = rastreo?.tracking?.providers[0]?.provider || 'Sin descripción disponible' // Mensaje predeterminado para description
 
 
     return (
@@ -47,11 +47,14 @@ export const Resultado = () => {
                     <HandRaisedIcon aria-hidden="true" className="h-6 w-6 text-white" />
                 </div>
                 <dt className="mt-4 text-base font-semibold text-red-500">Historial de envío</dt>
-                {historial.map((n,index) => (
-                    <dd  key={index} className="mt-2 text-base/7 text-white">
-                        <span >Estado: </span>{n.key_stage} - {n.time_raw.date}
-                    </dd>
+                {historial.map((n, index) => (
+                    n.time_raw.date ? (
+                        <dd key={index} className="mt-2 text-base/7 text-white">
+                            <span>Estado: </span>{n.key_stage} - {n.time_raw.date}
+                        </dd>
+                    ) : null
                 ))}
+
 
             </div>
 

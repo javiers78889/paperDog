@@ -1,35 +1,32 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Button, Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import dog from '../../img/ags.png'
-const user = {
+import { useContext } from 'react'
+import { UserContext } from '../../Context/UserContext'
+import { NavLink } from 'react-router-dom'
 
-
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
 const navigation = [
 
 
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Paqueteria', href: '#', current: false },
-  { name: 'Mis Direcciones', href: '#', current: false },
-  { name: 'Usuarios', href: '#', current: false },
-  { name: 'Mensajeria', href: '#', current: false },
+    { name: 'Dashboard', to:'/profile', current: true },
+    { name: 'Paqueteria', to: 'paqueteria', current: false },
+    { name: 'Mis Direcciones', href: '#', current: false },
+    { name: 'Usuarios', href: '#', current: false },
+    { name: 'Mensajeria', href: '#', current: false },
 ]
 const userNavigation = [
 
 
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+
+    { name: 'Sign out', },
 ]
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(' ')
 }
 export const NavProfile = () => {
+    const user = JSON.parse(sessionStorage.getItem('auth'))
+    const { logout } = useContext(UserContext)
     return (
         <div className="min-h-full">
             <Disclosure as="nav" className="bg-purple-600">
@@ -46,9 +43,9 @@ export const NavProfile = () => {
                             <div className="hidden md:block">
                                 <div className="ml-10 flex items-baseline space-x-4">
                                     {navigation.map((item) => (
-                                        <a
+                                        <NavLink
                                             key={item.name}
-                                            href={item.href}
+                                            to={item.to}
                                             aria-current={item.current ? 'page' : undefined}
                                             className={classNames(
                                                 item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -56,7 +53,7 @@ export const NavProfile = () => {
                                             )}
                                         >
                                             {item.name}
-                                        </a>
+                                        </NavLink>
                                     ))}
                                 </div>
                             </div>
@@ -78,7 +75,7 @@ export const NavProfile = () => {
                                         <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                             <span className="absolute -inset-1.5" />
                                             <span className="sr-only">Open user menu</span>
-                                            <img alt="" src={user.imageUrl} className="size-8 rounded-full" />
+                                            <img alt="" src={dog} className="size-8 rounded-full" />
                                         </MenuButton>
                                     </div>
                                     <MenuItems
@@ -87,12 +84,14 @@ export const NavProfile = () => {
                                     >
                                         {userNavigation.map((item) => (
                                             <MenuItem key={item.name}>
-                                                <a
-                                                    href={item.href}
+                                                <button
+                                                    onClick={logout}
+
+
                                                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                                                 >
                                                     {item.name}
-                                                </a>
+                                                </button>
                                             </MenuItem>
                                         ))}
                                     </MenuItems>
@@ -114,10 +113,10 @@ export const NavProfile = () => {
                 <DisclosurePanel className="md:hidden">
                     <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                         {navigation.map((item) => (
-                            <DisclosureButton
+                            <NavLink
                                 key={item.name}
                                 as="a"
-                                href={item.href}
+                                to={item.to}
                                 aria-current={item.current ? 'page' : undefined}
                                 className={classNames(
                                     item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -125,16 +124,16 @@ export const NavProfile = () => {
                                 )}
                             >
                                 {item.name}
-                            </DisclosureButton>
+                            </NavLink>
                         ))}
                     </div>
                     <div className="border-t border-gray-700 pb-3 pt-4">
                         <div className="flex items-center px-5">
                             <div className="shrink-0">
-                                <img alt="" src={user.imageUrl} className="size-10 rounded-full" />
+                                <img alt="" src={dog} className="size-10 rounded-full" />
                             </div>
                             <div className="ml-3">
-                                <div className="text-base/5 font-medium text-white">{user.name}</div>
+                                <div className="text-base/5 font-medium text-white">{user.usuario}</div>
                                 <div className="text-sm font-medium text-gray-400">{user.email}</div>
                             </div>
                             <button
@@ -148,21 +147,21 @@ export const NavProfile = () => {
                         </div>
                         <div className="mt-3 space-y-1 px-2">
                             {userNavigation.map((item) => (
-                                <DisclosureButton
+                                <button
                                     key={item.name}
                                     as="a"
-                                    href={item.href}
+                                    onClick={logout}
                                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                                 >
                                     {item.name}
-                                </DisclosureButton>
+                                </button>
                             ))}
                         </div>
                     </div>
                 </DisclosurePanel>
             </Disclosure>
 
-            
+
             <main>
                 <div className="mx-auto max-w-7xl px-4  sm:px-6 lg:px-8">{/* Your content */}</div>
             </main>

@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../../Context/UserContext';
 
 export const Redes = () => {
+    const { paquetes } = useContext(UserContext);
     return (
        <section className="py-5 " >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
@@ -25,7 +27,7 @@ export const Redes = () => {
                                 <div
                                     className="font-manrope font-bold text-4xl text-yellow-500 mb-3 text-center lg:text-left"
                                 >
-                                    260+
+                                    {paquetes.length}
                                 </div>
                                 <span className="text-white text-center block lg:text-left">
                                     Total de Paquetes

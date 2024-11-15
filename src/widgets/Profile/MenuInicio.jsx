@@ -5,7 +5,6 @@ import paper from '../../img/wallapaper.webp'
 import dog from '../../img/ags.png'
 export const MenuInicio = () => {
     const datostoken = JSON.parse(sessionStorage.getItem('auth'))
-    console.log(datostoken)
     return (
         <section className="relative pt-36 pb-24">
             <img

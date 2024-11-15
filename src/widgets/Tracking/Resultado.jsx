@@ -12,7 +12,7 @@ export const Resultado = () => {
 
     const empresa = rastreo?.tracking?.providers[0]?.provider|| 'Sin descripción disponible' // Mensaje predeterminado para description
 
-    console.log(empresa)
+
     return (
         <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
             <div className="flex flex-col items-start">

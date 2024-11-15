@@ -11,7 +11,7 @@ export const autenticar = async (body) => {
         if (response.data.token) {
             
             Swal.fire({
-                title: "Good job!",
+                title: "Acceso Aprobado!",
                 text: 'Bienvenido',
                 icon: "success"
             });

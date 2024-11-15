@@ -46,8 +46,8 @@ function App() {
                 <Footer />
               </>
             } />
-            <Route path='/login' element={<Login />}/>
-            <Route path='/profile' element={<Profile />}/>
+            <Route path='/login' element={<><Login /> <Footer /></>} />
+            <Route path='/profile/*' element={<Profile />} />
 
 
           </Routes>

@@ -7,6 +7,8 @@ export const UseUser = () => {
     const [tracking, setTracking] = useState(initTracking)
     const [buscando, setBuscando] = useState(false)
     const [rastreo, setRastreo] = useState(initTracking)
+    const[filtro,setFiltro]= useState([])
+    const [isOpen, setIsOpen] = useState(false);
 
     const onChange = (event) => {
         console.log(event.target.value)
@@ -14,6 +16,15 @@ export const UseUser = () => {
             event.target.value
         );
     }
+    const onFind = (event) => {
+       
+        setFiltro(event.target.value)
+      
+    }
+    const toggleModal = () => {
+        setIsOpen(!isOpen);
+        console.log(isOpen)
+    };
     const onInput = async () => {
         setBuscando(true)
         setRastreo(initTracking)
@@ -43,12 +54,18 @@ export const UseUser = () => {
             setBuscando(false);
         }
 
+
+
     }
     return {
         onChange,
         onInput,
+        onFind,
+        toggleModal,
         tracking,
         rastreo,
-        buscando
+        buscando,
+        filtro,
+        isOpen
     }
 }

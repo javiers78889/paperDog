@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from "react";
 import { AuthReducer } from "../Reducer/AuthReducer";
-import { BrowserRouter, useNavigate } from "react-router-dom";
+import { BrowserRouter, redirect, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
 import { autenticar } from "../Services/Service";
 import { jwtDecode } from "jwt-decode";
@@ -11,7 +11,7 @@ const initialDatos = {
     "email": '',
     "password": ''
 }
-const initialPaquetes =  []
+const initialPaquetes = []
 
 
 export const useValidation = () => {
@@ -19,6 +19,7 @@ export const useValidation = () => {
     const [datos, setDatos] = useState(initialDatos)
     const [paquetes, setPaquetes] = useState(initialPaquetes)
     const [actualizar, setActualizar] = useState([])
+    const[spiner,setSpiner]=useState(false)
     const [reload, setReload] = useState(false);
     const { email, password } = datos
     const onInputChange = (event) => {
@@ -26,13 +27,24 @@ export const useValidation = () => {
 
     }
     const data = async () => {
-        console.log('entregado')
-        const datito = await findPaquetes()
-       
-        setPaquetes(datito)
+        const decoded = JSON.parse(sessionStorage.getItem('auth'))
+      
+        if (decoded.role === 'admin') {
+            const datito = await findPaquetes()
+          
+            setPaquetes(datito)
+        } else {
+            const obj={
+                "email":decoded.email
+            }
+            const datito = await userPaquetes(obj)
+        
+            setPaquetes(datito)
+        }
     }
     const onSubmit = async (event) => {
         event.preventDefault();
+        setSpiner(true)
         const token = await autenticar(datos);
 
         if (token.length > 0) {
@@ -42,13 +54,9 @@ export const useValidation = () => {
             sessionStorage.setItem('auth', JSON.stringify(decoded))
             sessionStorage.setItem('token', token)
 
-            if (decoded.role === 'admin') {
-                    data()
-            }
-            else {
-                data()
-               
-            }
+
+           setReload(!reload)
+
 
 
 
@@ -59,9 +67,11 @@ export const useValidation = () => {
 
 
     }
-    
+
     const logout = () => {
         sessionStorage.removeItem('auth')
+        sessionStorage.removeItem('token')
+        
         navigate('/login')
 
     }
@@ -88,6 +98,7 @@ export const useValidation = () => {
     }
     useEffect(() => {
         data();
+        setSpiner(false)
     }, [reload]);
     return {
         onInputChange,
@@ -96,8 +107,10 @@ export const useValidation = () => {
         data,
         onCheck,
         onActualiza,
+        reload,
         email,
         password,
-        paquetes
+        paquetes,
+        spiner
     }
 }

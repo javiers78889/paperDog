@@ -4,8 +4,8 @@ import paper from '../img/ags.png'
 import { Link } from "react-router-dom"
 
 export const Login = () => {
-    const { email, password, onInputChange, onSubmit } = useContext(UserContext)
-   
+    const { email, password, onInputChange, onSubmit, spiner } = useContext(UserContext)
+
 
     return (
         <section className="bg-gradient-to-b from-purple-600 to-purple-400 dark:bg-gradient-to-b dark:from-purple-600 dark:to-purple-400">
@@ -38,7 +38,15 @@ export const Login = () => {
 
                                 <a href="#" className="text-sm font-medium text-white hover:underline dark:text-primary-500">Olvidó su Contraseña?</a>
                             </div>
-                            <button type="submit" className="w-full text-white bg-purple-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                            {spiner ? (
+                                <div className="flex items-center justify-center  ">
+                                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 border-t-transparent"><img src={paper} alt="" /></div>
+                                </div>
+
+                            ) : (
+
+                                <button type="submit" className="w-full text-white bg-purple-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                            )}
 
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 No tienes cuenta aún? <a href="#" className="font-medium text-white hover:underline dark:text-primary-500">Regístrate</a>

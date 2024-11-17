@@ -9,13 +9,13 @@ import { UserContext } from "./UserContext"
 export const UserProvider = ({ children }) => {
   const { isLoading } = useLoading()
   const { onChange, onInput, onFind, tracking, rastreo, buscando, filtro, toggleModal, isOpen } = UseUser()
-  const { onInputChange, onSubmit, logout, email, password, paquetes,onCheck,onActualiza } = useValidation()
+  const { onInputChange, onSubmit, logout, email, password, paquetes, reload, spiner, onCheck, onActualiza } = useValidation()
 
 
   return (
     <UserContext.Provider value={{
       isLoading, onChange, onInput,
-      tracking, rastreo, buscando, email, password, paquetes, filtro, isOpen, logout, onFind, toggleModal,onCheck,onActualiza,
+      tracking, rastreo, buscando, email, password, paquetes, filtro, spiner, isOpen, reload, logout, onFind, toggleModal, onCheck, onActualiza,
       onInputChange, onSubmit
     }}>
       {children}

@@ -3,6 +3,8 @@ import { UserContext } from '../../Context/UserContext';
 
 export const Redes = () => {
     const { paquetes } = useContext(UserContext);
+    const entregados= paquetes.filter((n)=>n.estado ==='Entregado')
+    const pendientes= paquetes.filter((n)=>n.estado ==='pendiente')
     return (
        <section className="py-5 " >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
@@ -37,7 +39,7 @@ export const Redes = () => {
                                 <div
                                     className="font-manrope font-bold text-4xl text-yellow-500 mb-3 text-center lg:text-left"
                                 >
-                                    975+
+                                    {pendientes.length}
                                 </div>
                                 <span className="text-white text-center block lg:text-left">
                                     Paquetes Nuevos
@@ -47,10 +49,10 @@ export const Redes = () => {
                                 <div
                                     className="font-manrope font-bold text-4xl text-yellow-500 mb-3 text-center lg:text-left"
                                 >
-                                    724+
+                                    {entregados.length}
                                 </div>
                                 <span className="text-white text-center block lg:text-left">
-                                    Paquetes Retirados
+                                    Paquetes Entregados
                                 </span>
                             </div>
                             <div className="block">

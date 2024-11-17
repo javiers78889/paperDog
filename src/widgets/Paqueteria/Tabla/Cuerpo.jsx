@@ -5,6 +5,7 @@ import { Filtrado } from './Cuerpo/Filtrado';
 
 export const Cuerpo = () => {
     const { paquetes, filtro } = useContext(UserContext);
+    sessionStorage.setItem('paquetes', JSON.stringify(paquetes))
 
     return (
         <tbody>

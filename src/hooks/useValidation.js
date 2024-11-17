@@ -11,7 +11,7 @@ const initialDatos = {
     "email": '',
     "password": ''
 }
-const initialPaquetes = []
+const initialPaquetes = JSON.parse(sessionStorage.getItem('paquetes')) || []
 
 
 export const useValidation = () => {
@@ -19,7 +19,7 @@ export const useValidation = () => {
     const [datos, setDatos] = useState(initialDatos)
     const [paquetes, setPaquetes] = useState(initialPaquetes)
     const [actualizar, setActualizar] = useState([])
-    const[spiner,setSpiner]=useState(false)
+    const [spiner, setSpiner] = useState(false)
     const [reload, setReload] = useState(false);
     const { email, password } = datos
     const onInputChange = (event) => {
@@ -28,17 +28,17 @@ export const useValidation = () => {
     }
     const data = async () => {
         const decoded = JSON.parse(sessionStorage.getItem('auth'))
-      
+
         if (decoded.role === 'admin') {
             const datito = await findPaquetes()
-          
+
             setPaquetes(datito)
         } else {
-            const obj={
-                "email":decoded.email
+            const obj = {
+                "email": decoded.email
             }
             const datito = await userPaquetes(obj)
-        
+
             setPaquetes(datito)
         }
     }
@@ -55,7 +55,7 @@ export const useValidation = () => {
             sessionStorage.setItem('token', token)
 
 
-           setReload(!reload)
+            setReload(!reload)
 
 
 
@@ -71,7 +71,7 @@ export const useValidation = () => {
     const logout = () => {
         sessionStorage.removeItem('auth')
         sessionStorage.removeItem('token')
-        
+
         navigate('/login')
 
     }

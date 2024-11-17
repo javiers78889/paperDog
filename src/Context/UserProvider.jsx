@@ -1,3 +1,4 @@
+
 import { useLoading } from "../hooks/useLoading"
 import { usePaquetes } from "../hooks/usePaquetes"
 import { UseUser } from "../hooks/UseUser"
@@ -8,12 +9,13 @@ import { UserContext } from "./UserContext"
 export const UserProvider = ({ children }) => {
   const { isLoading } = useLoading()
   const { onChange, onInput, onFind, tracking, rastreo, buscando, filtro, toggleModal, isOpen } = UseUser()
-  const { onInputChange, onSubmit, logout, email, password, paquetes, } = useValidation()
+  const { onInputChange, onSubmit, logout, email, password, paquetes,onCheck,onActualiza } = useValidation()
+
 
   return (
     <UserContext.Provider value={{
       isLoading, onChange, onInput,
-      tracking, rastreo, buscando, email, password, paquetes, filtro, isOpen, logout, onFind, toggleModal,
+      tracking, rastreo, buscando, email, password, paquetes, filtro, isOpen, logout, onFind, toggleModal,onCheck,onActualiza,
       onInputChange, onSubmit
     }}>
       {children}

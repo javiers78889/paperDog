@@ -1,4 +1,5 @@
 import axios from "axios"
+import Swal from "sweetalert2"
 
 const Api = 'https://paperdogback.onrender.com/paquetes'
 const ApUser = 'https://paperdogback.onrender.com/userpaquetes'
@@ -19,6 +20,8 @@ export const findPaquetes = async () => {
 
     }
 }
+
+//filtra dependiendo del usuario logueado
 export const userPaquetes = async (body) => {
 
     try {
@@ -32,4 +35,27 @@ export const userPaquetes = async (body) => {
         console.error(error)
 
     }
+}
+
+//Actualizar estado ; es decir ENTREGADO
+
+export const Entregar = async ({ id, estado }) => {
+    const body = {
+        id, estado
+    }
+    try {
+        const response = await axios.put(Api, body, { headers })
+        if (response) {
+            
+            return response
+        }
+    } catch (error) {
+        Swal.fire({
+            title: "Lo sentimos!",
+            text: error,
+            icon: "error"
+        });
+
+    }
+
 }

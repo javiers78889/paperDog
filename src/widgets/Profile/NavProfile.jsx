@@ -10,7 +10,7 @@ const navigation = [
 
     { name: 'Dashboard', to:'/profile', current: true },
     { name: 'Paqueteria', to: 'paqueteria', current: false },
-    { name: 'Mis Direcciones', href: '#', current: false },
+    { name: 'Mis Direcciones', to:'direcciones', current: false },
     { name: 'Usuarios', href: '#', current: false },
     { name: 'Mensajeria', href: '#', current: false },
 ]

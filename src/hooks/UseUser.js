@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { findPaquetes } from "../Services/Tracking"
 import Swal from "sweetalert2"
 
 const initTracking = ''
 export const UseUser = () => {
     const [tracking, setTracking] = useState(initTracking)
-    const [buscando, setBuscando] = useState(false)
+    const [buscando, setBuscando] = useState(true)
     const [rastreo, setRastreo] = useState(initTracking)
-    const[filtro,setFiltro]= useState([])
+    const [cargando, setCargando] = useState(true)
+    const [filtro, setFiltro] = useState([])
     const [isOpen, setIsOpen] = useState(false);
 
     const onChange = (event) => {
@@ -17,27 +18,28 @@ export const UseUser = () => {
         );
     }
     const onFind = (event) => {
-       
+
         setFiltro(event.target.value)
-      
+
     }
     const toggleModal = () => {
         setIsOpen(!isOpen);
         console.log(isOpen)
     };
     const onInput = async () => {
-        setBuscando(true)
-        setRastreo(initTracking)
         try {
+            setCargando(!cargando)
+            setRastreo(initTracking)
+
 
 
             const encontrado = await findPaquetes(tracking)
             const tracking_info = encontrado.data.accepted[0].track_info || {}
-    
+
             if (Object.keys(encontrado).length > 0) {
 
                 setRastreo(tracking_info)
-                setBuscando(false)
+                setCargando(!cargando)
             }
             else {
                 setBuscando(false)
@@ -57,6 +59,10 @@ export const UseUser = () => {
 
 
     }
+    useEffect(() => {
+        setBuscando(!buscando)
+
+    }, [cargando])
     return {
         onChange,
         onInput,

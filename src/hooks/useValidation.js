@@ -19,6 +19,7 @@ export const useValidation = () => {
     const [datos, setDatos] = useState(initialDatos)
     const [auth, setAuth] = useState([])
     const [update, setUpdate] = useState([])
+    const [tokeado, setTokeado] = useState('')
     const { id, tracking: seguimiento, email, estado, peso, total } = update
     const [usuarios, setUsuarios] = useState([])
     const [paquetes, setPaquetes] = useState(initialPaquetes)
@@ -37,11 +38,11 @@ export const useValidation = () => {
 
         const decoded = auth
         if (decoded && Object.keys(decoded).length > 0) {
-          
+
             if (decoded.role === 'admin') {
-               
+
                 const datito = await findPaquetes()
-                if (datito &&  Object.keys(datito).length > 0) {
+                if (datito && Object.keys(datito).length > 0) {
                     console.log('entrooo')
                     setPaquetes(datito)
                     const usuario = await EncontrarUsuarios()
@@ -64,7 +65,7 @@ export const useValidation = () => {
                     "email": decoded.email
                 }
                 const datito = await userPaquetes(obj)
-                if (datito &&  Object.keys(datito).length > 0) {
+                if (datito && Object.keys(datito).length > 0) {
                     setPaquetes(datito)
                     Swal.fire({
                         title: "Acceso Aprobado!",
@@ -72,7 +73,7 @@ export const useValidation = () => {
                         icon: "success"
                     });
                     navigate('/profile')
-                 
+
                 }
 
 
@@ -83,9 +84,10 @@ export const useValidation = () => {
         event.preventDefault();
         setSpiner(true)
         const token = await autenticar(datos);
+        console.log(token)
+        sessionStorage.setItem('token', token)
 
         if (token.length > 0) {
-            sessionStorage.setItem('token', token)
 
             const decoded = jwtDecode(token)
 
@@ -105,7 +107,7 @@ export const useValidation = () => {
     }
 
     const logout = () => {
-        sessionStorage.removeItem('auth')
+
         sessionStorage.removeItem('token')
 
         navigate('/login')
@@ -178,6 +180,6 @@ export const useValidation = () => {
         password,
         paquetes,
         spiner, toggleActualizaModal, open,
-        seguimiento, email, estado, peso, total, onChangeModal, cerrar, id, Editar, usuarios, auth
+        seguimiento, email, estado, peso, total, onChangeModal, cerrar, id, Editar, usuarios, auth, tokeado
     }
 }

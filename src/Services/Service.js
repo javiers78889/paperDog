@@ -9,12 +9,7 @@ export const autenticar = async (body) => {
         const response = await axios.post(Api, body)
 
         if (response.data.token) {
-            
-            Swal.fire({
-                title: "Acceso Aprobado!",
-                text: 'Bienvenido',
-                icon: "success"
-            });
+          
            
             return response.data.token;
         }

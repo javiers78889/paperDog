@@ -37,17 +37,25 @@ export const userPaquetes = async (body) => {
     }
 }
 
-//Actualizar estado ; es decir ENTREGADO
+//es decir ENTREGADO
 
 export const Entregar = async ({ id, estado }) => {
+    console.log(id)
     const body = {
         id, estado
     }
+    console.log(body)
     try {
         const response = await axios.put(Api, body, { headers })
         if (response) {
-            
-            return response
+            Swal.fire({
+                title: "Actualizado!",
+                text: response.data.mensaje,
+                icon: "success"
+            });
+            console.log(response)
+
+            return response.data.mensaje
         }
     } catch (error) {
         Swal.fire({
@@ -58,4 +66,26 @@ export const Entregar = async ({ id, estado }) => {
 
     }
 
+}
+//Actualizar estado ; 
+
+export const Edicion = async (body) => {
+    try {
+        const response = await axios.put(Api, body, { headers })
+        if (response) {
+            Swal.fire({
+                title: "Actualizado!",
+                text: response.data.mensaje,
+                icon: "success"
+            });
+            return response.data.mensaje
+        }
+    } catch (error) {
+        Swal.fire({
+            title: "Lo sentimos!",
+            text: error,
+            icon: "error"
+        });
+
+    }
 }

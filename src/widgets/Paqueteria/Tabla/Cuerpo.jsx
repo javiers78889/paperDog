@@ -11,12 +11,12 @@ export const Cuerpo = () => {
         <tbody>
             {filtro.length > 0 ? (
                 paquetes.filter((n) => n.email === filtro || n.tracking === filtro).map((n) => (
-                    <Filtrado n={n} />
+                    <Filtrado key={n.id} n={n} />
                 ))
 
             ) : paquetes.length > 0 ? (
                 paquetes.map((n) => (
-                    <Normal n={n} />
+                    <Normal key={n.id} n={n} />
                 ))
             ) : (
                 <tr>

@@ -4,6 +4,7 @@ import { Tabla } from '../widgets/Paqueteria/Tabla'
 import { BarritaFoot } from '../widgets/Paqueteria/BarritaFoot'
 import { UserContext } from '../Context/UserContext'
 import { Modal } from '../widgets/Modal/Modal'
+import { ModalActualiza } from '../widgets/Modal/ModalActualiza'
 
 export const Paqueteria = () => {
     
@@ -12,6 +13,7 @@ export const Paqueteria = () => {
             <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
                 <div className="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
                     <Modal/>
+                    <ModalActualiza/>
                     <Barrita />
                     <Tabla />
                     <BarritaFoot />

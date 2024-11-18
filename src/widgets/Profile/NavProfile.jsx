@@ -1,17 +1,16 @@
 import { Button, Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import dog from '../../img/ags.png'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { UserContext } from '../../Context/UserContext'
 import { NavLink } from 'react-router-dom'
 
 const navigation = [
 
 
-    { name: 'Dashboard', to:'/profile', current: true },
+    { name: 'Dashboard', to: '/profile', current: true },
     { name: 'Paqueteria', to: 'paqueteria', current: false },
-    { name: 'Mis Direcciones', to:'direcciones', current: false },
-    { name: 'Usuarios', href: '#', current: false },
+    { name: 'Mis Direcciones', to: 'direcciones', current: false },
     { name: 'Mensajeria', href: '#', current: false },
 ]
 const userNavigation = [
@@ -25,7 +24,10 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 export const NavProfile = () => {
+  
+
     const user = JSON.parse(sessionStorage.getItem('auth'))
+ 
     const { logout } = useContext(UserContext)
     return (
         <div className="min-h-full">

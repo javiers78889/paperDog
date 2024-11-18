@@ -3,8 +3,8 @@ import { UserContext } from '../../Context/UserContext';
 
 export const Redes = () => {
     const { paquetes } = useContext(UserContext);
-    const entregados= paquetes.filter((n)=>n.estado ==='Entregado')
-    const pendientes= paquetes.filter((n)=>n.estado ==='pendiente')
+    const entregados= paquetes?.filter((n)=>n.estado ==='Entregado')||[]
+    const pendientes= paquetes?.filter((n)=>n.estado ==='pendiente')||[]
     return (
        <section className="py-5 " >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">

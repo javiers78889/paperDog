@@ -25,6 +25,8 @@ export const autenticar = async (body) => {
                 text: response.data.mensaje,
                 icon: "error"
             });
+
+            return response
             
         }
 

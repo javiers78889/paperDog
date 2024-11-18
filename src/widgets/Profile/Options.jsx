@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const Options = () => {
+    const user = JSON.parse(sessionStorage.getItem('auth'))
     return (
         <div className="flex flex-col sm:flex-row max-sm:gap-5 items-center justify-between mb-5">
             <ul className="flex items-center gap-5">
@@ -51,9 +53,12 @@ export const Options = () => {
                 <button className="rounded-full border border-solid border-gray-300 bg-gray-50 py-3 px-4 text-sm font-semibold text-gray-900 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-50 hover:bg-gray-100 hover:border-gray-300">
                     Message
                 </button>
-                <button className="rounded-full border border-solid border-indigo-600 bg-indigo-600 py-3 px-4 text-sm font-semibold text-white whitespace-nowrap shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:bg-indigo-700 hover:border-indigo-700">
-                    Book a Session
-                </button>
+                {user.role === 'admin' ? (
+                    <Link to={'/profile/usuarios'} className="rounded-full border border-solid border-indigo-600 bg-indigo-600 py-3 px-4 text-sm font-semibold text-white whitespace-nowrap shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:bg-indigo-700 hover:border-indigo-700">
+                        Ver Usuario
+                    </Link>
+                ) : ('')}
+
             </div>
         </div>
     )

@@ -10,7 +10,7 @@ export const UseUser = () => {
     const [cargando, setCargando] = useState(true)
     const [filtro, setFiltro] = useState([])
     const [isOpen, setIsOpen] = useState(false);
-
+   
     const onChange = (event) => {
         console.log(event.target.value)
         setTracking(
@@ -24,8 +24,9 @@ export const UseUser = () => {
     }
     const toggleModal = () => {
         setIsOpen(!isOpen);
-        console.log(isOpen)
+        
     };
+  
     const onInput = async () => {
         try {
             setCargando(!cargando)
@@ -72,6 +73,7 @@ export const UseUser = () => {
         rastreo,
         buscando,
         filtro,
-        isOpen
+        isOpen,
+       
     }
 }

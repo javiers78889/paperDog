@@ -21,6 +21,7 @@ export const useValidation = () => {
     const [update, setUpdate] = useState([])
     const [tokeado, setTokeado] = useState('')
     const { id, tracking: seguimiento, email, estado, peso, total } = update
+    const [tupla,setTupla]=useState([])
     const [usuarios, setUsuarios] = useState([])
     const [paquetes, setPaquetes] = useState(initialPaquetes)
     const [actualizar, setActualizar] = useState([])
@@ -41,25 +42,14 @@ export const useValidation = () => {
 
             if (decoded.role === 'admin') {
 
-                const datito = await findPaquetes()
-                if (datito && Object.keys(datito).length > 0) {
-                    console.log('entrooo')
-                    setPaquetes(datito)
-                    const usuario = await EncontrarUsuarios()
-                    if (usuario.length > 0) {
-
-                        setUsuarios(usuario)
-                        Swal.fire({
-                            title: "Acceso Aprobado!",
-                            text: 'Bienvenido',
-                            icon: "success"
-                        });
-                        setSpiner(false)
-                        navigate('/profile')
-                    }
-
-                }
-
+                    setPaquetes(tupla.paquetes)
+                    setUsuarios(tupla.usuarios)
+                    Swal.fire({
+                        title: "Acceso Aprobado!",
+                        text: 'Bienvenido',
+                        icon: "success"
+                    });
+                    navigate('/profile')
             } else {
                 const obj = {
                     "email": decoded.email
@@ -84,22 +74,19 @@ export const useValidation = () => {
         event.preventDefault();
         setSpiner(true)
         const token = await autenticar(datos);
-        console.log(token)
-        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('token', token.token)
 
-        if (token.length > 0) {
-
-            const decoded = jwtDecode(token)
+        if (token.token.length > 0) {
+            setTupla(token)
+            const decoded = jwtDecode(token.token)
 
             setAuth(decoded)
 
 
 
-            setReload(!reload)
+           
         }
-        else {
-            setSpiner(false)
-        }
+        setReload(!reload)
 
 
 

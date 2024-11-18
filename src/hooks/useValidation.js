@@ -68,7 +68,7 @@ export const useValidation = () => {
                     setPaquetes(datito)
                     const usuario = await EncontrarUsuarios()
                     if (usuario &&  Object.keys(usuario).length > 0) {
-                       
+                        console.log('usuario')
                         setUsuarios(usuario)
                         Swal.fire({
                             title: "Acceso Aprobado!",

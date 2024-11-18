@@ -39,10 +39,10 @@ export const useValidation = () => {
         if (decoded && Object.keys(decoded).length > 0) {
           
             if (decoded.role === 'admin') {
-                console.log('entrooo')
+               
                 const datito = await findPaquetes()
                 if (datito &&  Object.keys(datito).length > 0) {
-
+                    console.log('entrooo')
                     setPaquetes(datito)
                     const usuario = await EncontrarUsuarios()
                     if (usuario.length > 0) {
@@ -66,10 +66,13 @@ export const useValidation = () => {
                 const datito = await userPaquetes(obj)
                 if (datito &&  Object.keys(datito).length > 0) {
                     setPaquetes(datito)
-                   
-                        setSpiner(false)
-                        navigate('/profile')
-                    }
+                    Swal.fire({
+                        title: "Acceso Aprobado!",
+                        text: 'Bienvenido',
+                        icon: "success"
+                    });
+                    navigate('/profile')
+                 
                 }
 
 

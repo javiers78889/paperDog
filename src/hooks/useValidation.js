@@ -66,15 +66,7 @@ export const useValidation = () => {
                 const datito = await userPaquetes(obj)
                 if (datito &&  Object.keys(datito).length > 0) {
                     setPaquetes(datito)
-                    const usuario = await EncontrarUsuarios()
-                    if (usuario &&  Object.keys(usuario).length > 0) {
-                        console.log('usuario')
-                        setUsuarios(usuario)
-                        Swal.fire({
-                            title: "Acceso Aprobado!",
-                            text: 'Bienvenido',
-                            icon: "success"
-                        });
+                   
                         setSpiner(false)
                         navigate('/profile')
                     }

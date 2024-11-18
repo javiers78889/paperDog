@@ -48,6 +48,12 @@ export const useValidation = () => {
                     if (usuario.length > 0) {
 
                         setUsuarios(usuario)
+                        Swal.fire({
+                            title: "Acceso Aprobado!",
+                            text: 'Bienvenido',
+                            icon: "success"
+                        });
+                        setSpiner(false)
                         navigate('/profile')
                     }
 
@@ -64,6 +70,12 @@ export const useValidation = () => {
                     if (usuario &&  Object.keys(usuario).length > 0) {
                        
                         setUsuarios(usuario)
+                        Swal.fire({
+                            title: "Acceso Aprobado!",
+                            text: 'Bienvenido',
+                            icon: "success"
+                        });
+                        setSpiner(false)
                         navigate('/profile')
                     }
                 }

@@ -40,8 +40,7 @@ export const useValidation = () => {
         const decoded = auth
         if (decoded && Object.keys(decoded).length > 0) {
 
-            if (decoded.role === 'admin') {
-
+           
                     setPaquetes(tupla.paquetes)
                     setUsuarios(tupla.usuarios)
                     Swal.fire({
@@ -50,26 +49,11 @@ export const useValidation = () => {
                         icon: "success"
                     });
                     navigate('/profile')
-            } else {
-                const obj = {
-                    "email": decoded.email
-                }
-                const datito = await userPaquetes(obj)
-                if (datito && Object.keys(datito).length > 0) {
-                    setPaquetes(datito)
-                    Swal.fire({
-                        title: "Acceso Aprobado!",
-                        text: 'Bienvenido',
-                        icon: "success"
-                    });
-                    navigate('/profile')
-
-                }
-
+           
 
             }
         }
-    }
+    
     const onSubmit = async (event) => {
         event.preventDefault();
         setSpiner(true)

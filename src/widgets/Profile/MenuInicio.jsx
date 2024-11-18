@@ -3,8 +3,12 @@ import { Options } from './Options'
 import { Redes } from './Redes'
 import paper from '../../img/wallapaper.webp'
 import dog from '../../img/ags.png'
+import { useContext } from 'react'
+import { UserContext } from '../../Context/UserContext'
 export const MenuInicio = () => {
-    const datostoken = JSON.parse(sessionStorage.getItem('auth'))
+    const{auth}=useContext(UserContext)
+    const datostoken = auth
+
     return (
         <section className="relative pt-36 pb-24">
             <img

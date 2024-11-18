@@ -24,11 +24,9 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 export const NavProfile = () => {
-  
 
-    const user = JSON.parse(sessionStorage.getItem('auth'))
- 
-    const { logout } = useContext(UserContext)
+  const { logout,auth } = useContext(UserContext)
+  const user = auth
     return (
         <div className="min-h-full">
             <Disclosure as="nav" className="bg-purple-600">

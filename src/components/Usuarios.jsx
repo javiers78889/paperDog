@@ -3,6 +3,7 @@ import { Cuerpo } from '../widgets/Paqueteria/Tabla/Cuerpo'
 import { Barrita } from '../widgets/Paqueteria/Barrita'
 import { ListaUsuarios } from '../widgets/Usuarios/ListaUsuarios'
 import { BarritaFoot } from '../widgets/Paqueteria/BarritaFoot'
+import { BarraUser } from '../widgets/Usuarios/BarraUser'
 
 export const Usuarios = () => {
     return (
@@ -10,7 +11,7 @@ export const Usuarios = () => {
         <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
             <div className="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
              
-                <Barrita />
+                <BarraUser/>
                 <ListaUsuarios />
                 <BarritaFoot />
                 

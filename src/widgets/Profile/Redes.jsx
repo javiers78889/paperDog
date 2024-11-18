@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { UserContext } from '../../Context/UserContext';
 
 export const Redes = () => {
-    const { paquetes } = useContext(UserContext);
-    const entregados= paquetes?.filter((n)=>n.estado ==='Entregado')||[]
-    const pendientes= paquetes?.filter((n)=>n.estado ==='pendiente')||[]
+    const { paquetes, auth, usuarios } = useContext(UserContext);
+    const entregados = paquetes?.filter((n) => n.estado === 'Entregado') || []
+    const pendientes = paquetes?.filter((n) => n.estado === 'pendiente') || []
     return (
-       <section className="py-5 " >
+        <section className="py-5 " >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
                 <div
                     className="rounded-2xl py-10 px-10 xl:py-16 xl:px-20 bg-gray-900 flex items-center justify-between flex-col gap-16 lg:flex-row"
@@ -55,16 +55,19 @@ export const Redes = () => {
                                     Paquetes Entregados
                                 </span>
                             </div>
-                            <div className="block">
-                                <div
-                                    className="font-manrope font-bold text-4xl text-yellow-500 mb-3 text-center lg:text-left"
-                                >
-                                    89+
+                            {auth.role === 'admin' ? (
+                                <div className="block">
+                                    <div
+                                        className="font-manrope font-bold text-4xl text-yellow-500 mb-3 text-center lg:text-left"
+                                    >
+                                        {usuarios.length}
+                                    </div>
+                                    <span className="text-white text-center block lg:text-left">
+                                        Cantidad de Clientes
+                                    </span>
                                 </div>
-                                <span className="text-white text-center block lg:text-left">
-                                    Cantidad de Clientes
-                                </span>
-                            </div>
+                            ) : ('')}
+
                         </div>
                     </div>
                 </div>

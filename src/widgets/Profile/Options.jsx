@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../Context/UserContext'
 
 export const Options = () => {
-    const user = JSON.parse(sessionStorage.getItem('auth'))
+    const { auth } = useContext(UserContext)
+  const user = auth
     return (
         <div className="flex flex-col sm:flex-row max-sm:gap-5 items-center justify-between mb-5">
             <ul className="flex items-center gap-5">

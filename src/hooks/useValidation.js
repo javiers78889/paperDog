@@ -17,6 +17,7 @@ const initialPaquetes = JSON.parse(sessionStorage.getItem('paquetes')) || []
 export const useValidation = () => {
     const navigate = useNavigate()
     const [datos, setDatos] = useState(initialDatos)
+    const [auth, setAuth] = useState([])
     const [update, setUpdate] = useState([])
     const { id, tracking: seguimiento, email, estado, peso, total } = update
     const [usuarios, setUsuarios] = useState([])
@@ -32,36 +33,42 @@ export const useValidation = () => {
 
     }
     const data = async () => {
-        const decoded = JSON.parse(sessionStorage.getItem('auth'))
-        if (decoded) {
+
+
+        const decoded = auth
+        if (decoded && Object.keys(decoded).length > 0) {
+          
             if (decoded.role === 'admin') {
+                console.log('entrooo')
                 const datito = await findPaquetes()
-                if (datito) {
+                if (datito &&  Object.keys(datito).length > 0) {
 
                     setPaquetes(datito)
                     const usuario = await EncontrarUsuarios()
-                    if (usuario) {
+                    if (usuario.length > 0) {
 
                         setUsuarios(usuario)
+                        navigate('/profile')
                     }
 
                 }
-                navigate('/profile')
+
             } else {
                 const obj = {
                     "email": decoded.email
                 }
                 const datito = await userPaquetes(obj)
-                if (datito) {
+                if (datito &&  Object.keys(datito).length > 0) {
                     setPaquetes(datito)
                     const usuario = await EncontrarUsuarios()
-                    if (usuario) {
-
+                    if (usuario &&  Object.keys(usuario).length > 0) {
+                       
                         setUsuarios(usuario)
+                        navigate('/profile')
                     }
                 }
 
-                navigate('/profile')
+
             }
         }
     }
@@ -69,20 +76,20 @@ export const useValidation = () => {
         event.preventDefault();
         setSpiner(true)
         const token = await autenticar(datos);
-        console.log(token)
-        sessionStorage.setItem('token', token)
-        if (token.length > 0) {
-           
-            const decoded =  jwtDecode(token)
 
-            sessionStorage.setItem('auth', JSON.stringify(decoded))
-            
+        if (token.length > 0) {
+            sessionStorage.setItem('token', token)
+
+            const decoded = jwtDecode(token)
+
+            setAuth(decoded)
+
 
 
             setReload(!reload)
         }
         else {
-            setReload(!reload)
+            setSpiner(false)
         }
 
 
@@ -150,6 +157,7 @@ export const useValidation = () => {
     useEffect(() => {
         data();
         setSpiner(!spiner)
+
     }, [reload]);
     return {
         onInputChange,
@@ -163,6 +171,6 @@ export const useValidation = () => {
         password,
         paquetes,
         spiner, toggleActualizaModal, open,
-        seguimiento, email, estado, peso, total, onChangeModal, cerrar, id, Editar, usuarios
+        seguimiento, email, estado, peso, total, onChangeModal, cerrar, id, Editar, usuarios, auth
     }
 }

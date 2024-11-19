@@ -2,46 +2,38 @@ import axios from "axios"
 import Swal from "sweetalert2"
 
 const Api = 'https://paperdogback.onrender.com/paquetes'
-const ApUser = 'https://paperdogback.onrender.com/userpaquetes'
-const storedToken = sessionStorage.getItem('token')
-const headers = {
-    'Authorization': `Bearer ${storedToken}`
-}
-export const findPaquetes = async () => {
+
+
+
+export const CreatePackage = async (body) => {
+    const storedToken = sessionStorage.getItem('token')
+    console.log(storedToken)
+    const headers = {
+        'Authorization': `Bearer ${storedToken}`
+    }
+
     try {
-
-        const response = await axios.get(Api, { headers })
-       
-
-        return response.data
+        const response = await axios.post(Api, body, { headers })
+        return response.data.mensaje
 
     } catch (error) {
-
+        Swal.fire({
+            title: "Error!",
+            text: error,
+            icon: "error"
+        });
         console.error(error)
 
     }
 }
-
-//filtra dependiendo del usuario logueado
-export const userPaquetes = async (body) => {
-
-    try {
-
-        const response = await axios.post(ApUser, body, { headers })
-
-        return response.data
-
-    } catch (error) {
-
-        console.error(error)
-
-    }
-}
-
-//es decir ENTREGADO
+//ENTREGADO
 
 export const Entregar = async ({ id, estado }) => {
-    console.log(id)
+
+    const storedToken = sessionStorage.getItem('token')
+    const headers = {
+        'Authorization': `Bearer ${storedToken}`
+    }
     const body = {
         id, estado
     }
@@ -71,6 +63,10 @@ export const Entregar = async ({ id, estado }) => {
 //Actualizar estado ; 
 
 export const Edicion = async (body) => {
+    const storedToken = sessionStorage.getItem('token')
+    const headers = {
+        'Authorization': `Bearer ${storedToken}`
+    }
     try {
         const response = await axios.put(Api, body, { headers })
         if (response) {

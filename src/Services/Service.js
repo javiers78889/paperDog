@@ -7,10 +7,12 @@ const Api = 'https://paperdogback.onrender.com/login'
 export const autenticar = async (body) => {
     try {
         const response = await axios.post(Api, body)
-        
+
         if (response.data.obj.token) {
-          
-            
+            const toke = response.data.obj.token
+            console.log(toke)
+
+            sessionStorage.setItem('token', toke)
             return response.data.obj;
         }
 
@@ -22,7 +24,7 @@ export const autenticar = async (body) => {
             });
 
             return response
-            
+
         }
 
     } catch (error) {

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { UserContext } from '../../Context/UserContext'
 
 export const Modal = () => {
-    const { isOpen, toggleModal } = useContext(UserContext)
+    const { isOpen, toggleModal, correo, track, libra, costoso, planes, crearPaquete, onCreate } = useContext(UserContext)
     return isOpen ? (
         <>
             <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
@@ -41,7 +41,7 @@ export const Modal = () => {
 
                         {/* Cuerpo del modal */}
                         <div className="p-4 md:p-5">
-                            <form className="space-y-4">
+                            <form className="space-y-4" onSubmit={crearPaquete}>
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Email de Cliente
@@ -49,6 +49,8 @@ export const Modal = () => {
                                     <input
                                         type="email"
                                         name="email"
+                                        value={correo}
+                                        onChange={onCreate}
                                         id="email"
                                         placeholder="Email del cliente"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
@@ -61,8 +63,10 @@ export const Modal = () => {
                                     </label>
                                     <input
                                         type="text"
-                                        name="track"
+                                        name="tracking"
                                         id="track"
+                                        value={track}
+                                        onChange={onCreate}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         placeholder="tracking"
                                         required
@@ -76,7 +80,8 @@ export const Modal = () => {
                                         type="number"
                                         name="peso"
                                         id="peso"
-                                        defaultValue={0}
+                                        value={libra}
+                                        onChange={onCreate}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         placeholder="Ingresa El peso o volúmen"
                                         required
@@ -87,10 +92,11 @@ export const Modal = () => {
                                         tarifa
                                     </label>
                                     <input
-                                        type="number"
+                                        type="text"
                                         name="tarifa"
                                         id="tarifa"
-                                        defaultValue={0}
+                                        value={costoso}
+                                        onChange={onCreate}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         placeholder="Ingresa La Tárifa"
                                         required
@@ -100,11 +106,12 @@ export const Modal = () => {
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Plan
                                     </label>
-                                    <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected>Elige el plan</option>
-                                        <option value="US">Aéreo ($2.75)</option>
-                                        <option value="CA">Marítimo ($12.00)</option>
-                                      
+                                    <select id="countries" onChange={onCreate} name='plan' value={planes} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        
+                                        <option value='' >Elige un plan</option>
+                                        <option value="aereo">Aéreo ($2.75)</option>
+                                        <option value="maritimo">Marítimo ($12.00)</option>
+
                                     </select>
                                 </div>
 
@@ -115,7 +122,7 @@ export const Modal = () => {
                                 >
                                     Crear Paquete
                                 </button>
-                               
+
                             </form>
                         </div>
                     </div>

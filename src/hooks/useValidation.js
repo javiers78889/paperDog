@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { autenticar } from "../Services/Service";
 import { jwtDecode } from "jwt-decode";
-import { Edicion, Entregar, findPaquetes, userPaquetes } from "../Services/Paquetes";
+import { Edicion, Entregar } from "../Services/Paquetes";
 import Swal from "sweetalert2";
 import { ActualizarPaquete } from "../Services/ActualizarPaquetes";
-import { EncontrarUsuarios } from "../Services/User";
 
 const initialDatos = {
     "email": '',
@@ -21,10 +20,11 @@ export const useValidation = () => {
     const [update, setUpdate] = useState([])
     const [tokeado, setTokeado] = useState('')
     const { id, tracking: seguimiento, email, estado, peso, total } = update
-    const [tupla,setTupla]=useState([])
+    const [tupla, setTupla] = useState([])
     const [usuarios, setUsuarios] = useState([])
     const [paquetes, setPaquetes] = useState(initialPaquetes)
     const [actualizar, setActualizar] = useState([])
+    const [valido, setValido] = useState(true)
     const [spiner, setSpiner] = useState(true)
     const [reload, setReload] = useState(false);
     const [open, setOpen] = useState(false);
@@ -35,40 +35,51 @@ export const useValidation = () => {
 
     }
     const data = async () => {
+        if (valido) {
 
+            const decoded = auth
+            if (decoded && Object.keys(decoded).length > 0) {
+                setPaquetes(tupla.paquetes)
+                setUsuarios(tupla.usuarios)
+                Swal.fire({
+                    title: "Acceso Aprobado!",
+                    text: 'Bienvenido',
+                    icon: "success"
+                });
 
-        const decoded = auth
-        if (decoded && Object.keys(decoded).length > 0) {
+                navigate('/profile')
+            }
 
-           
-                    setPaquetes(tupla.paquetes)
-                    setUsuarios(tupla.usuarios)
-                    Swal.fire({
-                        title: "Acceso Aprobado!",
-                        text: 'Bienvenido',
-                        icon: "success"
-                    });
-                    navigate('/profile')
-           
+        } else {
+            console.log('entre')
+            const token = await autenticar(datos);
+            if (token.token.length > 0) {
+
+                setPaquetes(token.paquetes)
+                setUsuarios(token.usuarios)
 
             }
+            
+            Swal.fire({
+                title: "Hecho!",
+                text: 'Perfecto',
+                icon: "success"
+            });
+            setValido(true)
+
         }
-    
+    }
+
     const onSubmit = async (event) => {
         event.preventDefault();
         setSpiner(true)
         const token = await autenticar(datos);
-        sessionStorage.setItem('token', token.token)
-
         if (token.token.length > 0) {
+
             setTupla(token)
             const decoded = jwtDecode(token.token)
 
             setAuth(decoded)
-
-
-
-           
         }
         setReload(!reload)
 
@@ -78,8 +89,9 @@ export const useValidation = () => {
     }
 
     const logout = () => {
-
+        setValido(true)
         sessionStorage.removeItem('token')
+
 
         navigate('/login')
 
@@ -94,7 +106,6 @@ export const useValidation = () => {
         }
         const response = await ActualizarPaquete(obj)
         if (response) {
-            console.log(response)
             setUpdate(response)
             setOpen(!open);
         }
@@ -109,20 +120,14 @@ export const useValidation = () => {
 
     }
     const onActualiza = async () => {
+        setValido(false)
         const ob = {
             "id": actualizar,
             "estado": "Entregado"
         }
         const respuesta = await Entregar(ob)
 
-        if (respuesta) {
-            Swal.fire({
-                title: "Estado",
-                text: respuesta.data.mensaje,
-                icon: "success"
-            });
-            setReload(!reload);
-        }
+        setReload(!reload);
     }
 
     const Editar = async (event) => {

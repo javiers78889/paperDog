@@ -1,12 +1,13 @@
-import React, { useContext } from 'react'
+
 import { Barrita } from '../widgets/Paqueteria/Barrita'
 import { Tabla } from '../widgets/Paqueteria/Tabla'
 import { BarritaFoot } from '../widgets/Paqueteria/BarritaFoot'
-import { UserContext } from '../Context/UserContext'
 import { Modal } from '../widgets/Modal/Modal'
 import { ModalActualiza } from '../widgets/Modal/ModalActualiza'
 
 export const Paqueteria = () => {
+  
+
     
     return (
         <section className="bg-gray-50 dark:bg-orange-600 py-3 sm:py-5">
@@ -16,7 +17,7 @@ export const Paqueteria = () => {
                     <ModalActualiza/>
                     <Barrita />
                     <Tabla />
-                    <BarritaFoot />
+                
                     
                 </div>
             </div>

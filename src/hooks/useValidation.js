@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { autenticar } from "../Services/Service";
 import { jwtDecode } from "jwt-decode";
-import { Edicion, Entregar } from "../Services/Paquetes";
+import { CreatePackage, Edicion, Entregar } from "../Services/Paquetes";
 import Swal from "sweetalert2";
 import { ActualizarPaquete } from "../Services/ActualizarPaquetes";
 
@@ -18,7 +18,6 @@ export const useValidation = () => {
     const [datos, setDatos] = useState(initialDatos)
     const [auth, setAuth] = useState([])
     const [update, setUpdate] = useState([])
-    const [tokeado, setTokeado] = useState('')
     const { id, tracking: seguimiento, email, estado, peso, total } = update
     const [tupla, setTupla] = useState([])
     const [usuarios, setUsuarios] = useState([])
@@ -29,6 +28,8 @@ export const useValidation = () => {
     const [reload, setReload] = useState(false);
     const [open, setOpen] = useState(false);
     const { email: emails, password } = datos
+    const [capturar, setCapturar] = useState([])
+    const { email: correo, track, peso: libra, tarifa: costoso, plan: planes } = capturar
 
     const onInputChange = (event) => {
         setDatos({ ...datos, [event.target.name]: event.target.value })
@@ -51,7 +52,6 @@ export const useValidation = () => {
             }
 
         } else {
-            console.log('entre')
             const token = await autenticar(datos);
             if (token.token.length > 0) {
 
@@ -59,13 +59,13 @@ export const useValidation = () => {
                 setUsuarios(token.usuarios)
 
             }
-            
+
             Swal.fire({
                 title: "Hecho!",
                 text: 'Perfecto',
                 icon: "success"
             });
-            setValido(true)
+            
 
         }
     }
@@ -139,6 +139,48 @@ export const useValidation = () => {
         }
 
     }
+    const onCreate = (event) => {
+
+
+        setCapturar({ ...capturar, [event.target.name]: event.target.value })
+
+    }
+    const crearPaquete = async (event) => {
+        event.preventDefault()
+        setValido(false)
+        const { tarifa, peso, tracking, email, plan } = capturar
+
+
+        const pesado = Number(peso)
+        const estado = 'pendiente'
+        const total = parseFloat((Number(tarifa) * peso).toFixed(1));
+
+        // Objeto a enviar
+        const datos = {
+            tracking: tracking,    // Este es un ejemplo
+            email: email,
+            plan: plan,
+            peso: pesado,
+            total: total,              // El total ahora es un número flotante con un decimal
+            estado: estado
+        };
+
+        const response = await CreatePackage(datos)
+        if (response) {
+            Swal.fire({
+                title: "Ok!",
+                text: response,
+                icon: "Success"
+            });
+            setReload(!reload)
+
+
+        }
+
+
+
+    }
+
     useEffect(() => {
         data();
         setSpiner(!spiner)
@@ -156,6 +198,13 @@ export const useValidation = () => {
         password,
         paquetes,
         spiner, toggleActualizaModal, open,
-        seguimiento, email, estado, peso, total, onChangeModal, cerrar, id, Editar, usuarios, auth, tokeado
+        seguimiento, email, estado, peso, total, onChangeModal, cerrar, id, Editar, usuarios, auth,
+        crearPaquete,
+        onCreate,
+        correo,
+        track,
+        libra,
+        costoso,
+        planes
     }
 }

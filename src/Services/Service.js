@@ -28,6 +28,7 @@ export const autenticar = async (body) => {
         }
 
     } catch (error) {
+        console.error(error)
 
     }
 }

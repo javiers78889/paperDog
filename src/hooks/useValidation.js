@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import { CreatePackage, Edicion, Entregar } from "../Services/Paquetes";
 import Swal from "sweetalert2";
 import { ActualizarPaquete } from "../Services/ActualizarPaquetes";
+import { crearUsuario } from "../Services/Usuarios";
 
 const initialDatos = {
     "email": '',
@@ -18,7 +19,7 @@ export const useValidation = () => {
     const [datos, setDatos] = useState(initialDatos)
     const [auth, setAuth] = useState([])
     const [update, setUpdate] = useState([])
-    const { id, tracking: seguimiento, email, estado, peso, total } = update
+    const { id, tracking: seguimiento, email, usuario, password: contrasena, role, plan, estado, peso, total } = update
     const [tupla, setTupla] = useState([])
     const [usuarios, setUsuarios] = useState([])
     const [paquetes, setPaquetes] = useState(initialPaquetes)
@@ -65,7 +66,7 @@ export const useValidation = () => {
                 text: 'Perfecto',
                 icon: "success"
             });
-            
+
 
         }
     }
@@ -73,15 +74,19 @@ export const useValidation = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
         setSpiner(true)
-        const token = await autenticar(datos);
-        if (token.token.length > 0) {
+        const token = await autenticar(datos)||''
+        if (token?.token?.length > 0) {
 
             setTupla(token)
             const decoded = jwtDecode(token.token)
 
             setAuth(decoded)
+            setReload(!reload)
         }
-        setReload(!reload)
+        else{
+            setSpiner(false)
+        }
+       
 
 
 
@@ -97,6 +102,7 @@ export const useValidation = () => {
 
     }
     const onCheck = (id) => {
+        console.log(id)
         setActualizar(id)
 
     }
@@ -106,16 +112,25 @@ export const useValidation = () => {
         }
         const response = await ActualizarPaquete(obj)
         if (response) {
-            setUpdate(response)
+            setUpdate([])
             setOpen(!open);
         }
 
     };
+
+    const onCreateUser = async (event) => {
+        event.preventDefault()
+        console.log(update)
+        await crearUsuario(update)
+
+        setUpdate([])
+    }
     const cerrar = () => {
         setOpen(!open);
     }
 
     const onChangeModal = (event) => {
+        console.log(event.target.name)
         setUpdate({ ...update, [event.target.name]: event.target.value })
 
     }
@@ -205,6 +220,9 @@ export const useValidation = () => {
         track,
         libra,
         costoso,
-        planes
+        planes, contrasena, usuario,
+        role,
+        plan, onCreateUser
+
     }
 }

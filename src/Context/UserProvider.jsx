@@ -7,16 +7,16 @@ import { UserContext } from "./UserContext"
 
 export const UserProvider = ({ children }) => {
   const { isLoading } = useLoading()
-  const { onChange, onInput, onFind, tracking, rastreo, buscando, filtro, toggleModal, isOpen } = UseUser()
-  const { onInputChange, onSubmit, logout, Editar, seguimiento, email, auth, estado, peso, total, id, emails, usuarios, password, paquetes, reload, spiner, onCheck, onActualiza, toggleActualizaModal, open, onChangeModal, cerrar,correo, track, libra, costoso, planes, crearPaquete, onCreate } = useValidation()
+  const { onChange, onInput, onFind, tracking, rastreo, buscando, filtro, toggleModal, isOpen, abrir, toggleUser } = UseUser()
+  const { onInputChange, onSubmit, logout, Editar, seguimiento, email, auth, estado, peso, total, id, emails, usuarios, password, paquetes, reload, spiner, onCheck, onActualiza, toggleActualizaModal, open, onChangeModal, cerrar, correo, track, libra, costoso, planes, crearPaquete, onCreate, contrasena, role, plan, usuario, onCreateUser } = useValidation()
 
 
   return (
     <UserContext.Provider value={{
       isLoading, onChange, onInput,
-      tracking, rastreo, buscando, seguimiento, cerrar, Editar, email, id, estado, peso, total, emails, password, paquetes, filtro, spiner, isOpen, reload, logout, onFind, toggleModal, onCheck, onActualiza, onChangeModal,
-      onInputChange, onSubmit, toggleActualizaModal, usuarios, auth,
-      open, correo, track, libra, costoso, planes, crearPaquete, onCreate
+      tracking, rastreo, buscando, seguimiento, cerrar, Editar, email, id, estado, peso, total, emails, password, paquetes, filtro, spiner, isOpen, reload, logout, onFind, toggleModal, onCheck, onActualiza, onChangeModal, usuario, onCreateUser,
+      onInputChange, onSubmit, toggleActualizaModal, usuarios, auth, contrasena, role, plan,
+      open, correo, track, libra, costoso, planes, crearPaquete, onCreate, abrir, toggleUser
     }}>
       {children}
     </UserContext.Provider>

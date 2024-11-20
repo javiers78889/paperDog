@@ -8,7 +8,7 @@ export const autenticar = async (body) => {
     try {
         const response = await axios.post(Api, body)
 
-        if (response.data.obj.token) {
+        if (response?.data?.obj?.token) {
             const toke = response.data.obj.token
             console.log(toke)
 
@@ -23,7 +23,7 @@ export const autenticar = async (body) => {
                 icon: "error"
             });
 
-            return response
+            return;
 
         }
 

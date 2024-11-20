@@ -3,10 +3,10 @@ import { UserContext } from "../../Context/UserContext";
 
 
 export const Barrita = () => {
-    const { onFind, toggleModal, onActualiza,toggleActualizaModal,auth } = useContext(UserContext);
+    const { onFind, toggleModal, onActualiza, toggleActualizaModal, auth, isOpen } = useContext(UserContext);
     const datostoken = auth
 
-    return (
+    return isOpen ? (
         <div className="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
             <div className="flex items-center flex-1 space-x-4">
                 <input type="text" id="search-navbar" className="  p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar..." onChange={onFind} name="tracking" />
@@ -39,5 +39,5 @@ export const Barrita = () => {
 
             </div>
         </div>
-    )
+    ) : null
 }

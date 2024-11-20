@@ -10,7 +10,8 @@ export const UseUser = () => {
     const [cargando, setCargando] = useState(true)
     const [filtro, setFiltro] = useState([])
     const [isOpen, setIsOpen] = useState(false);
-   
+    const [abrir, setAbrir] = useState(false)
+
     const onChange = (event) => {
         console.log(event.target.value)
         setTracking(
@@ -24,9 +25,13 @@ export const UseUser = () => {
     }
     const toggleModal = () => {
         setIsOpen(!isOpen);
-        
+
     };
-  
+    const toggleUser = () => {
+        setAbrir(!abrir)
+
+    };
+
     const onInput = async () => {
         try {
             setCargando(!cargando)
@@ -51,6 +56,7 @@ export const UseUser = () => {
                 });
             }
         } catch (error) {
+            console.error(error)
 
         } finally {
             // Finalmente, después de terminar la búsqueda, se actualiza el estado
@@ -74,6 +80,8 @@ export const UseUser = () => {
         buscando,
         filtro,
         isOpen,
-       
+        toggleUser,
+        abrir
+
     }
 }

@@ -4,6 +4,7 @@ import { Barrita } from '../widgets/Paqueteria/Barrita'
 import { ListaUsuarios } from '../widgets/Usuarios/ListaUsuarios'
 import { BarritaFoot } from '../widgets/Paqueteria/BarritaFoot'
 import { BarraUser } from '../widgets/Usuarios/BarraUser'
+import { ModalUser } from '../widgets/Modal/ModalUser'
 
 export const Usuarios = () => {
     return (
@@ -12,6 +13,7 @@ export const Usuarios = () => {
             <div className="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
              
                 <BarraUser/>
+                <ModalUser/>
                 <ListaUsuarios />
                 <BarritaFoot />
                 

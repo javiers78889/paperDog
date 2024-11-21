@@ -123,10 +123,11 @@ export const useValidation = () => {
 
     };
 
-    const onCreateUser = async (event) => {
+    const onCreateUser = async (event, body) => {
         event.preventDefault()
+        console.log(body)
+        console.log(update)
         await crearUsuario(update)
-        setReload(!reload)
 
         setUpdate([])
     }

@@ -6,7 +6,7 @@ export const Resultado = () => {
     const { rastreo } = useContext(UserContext)
     const vendedor = rastreo?.shipping_info?.shipper_address || {}
     const receptor = rastreo?.shipping_info?.recipient_address || {}
-    const estado = rastreo?.latest_event?.stage || 'Sin estado disponible'  // Se coloca un mensaje predeterminado si `stage` es null o undefined
+    const estado = rastreo?.latest_event?.stage || 'Pendiente'  // Se coloca un mensaje predeterminado si `stage` es null o undefined
     const description = rastreo?.latest_event?.description || 'Sin descripción disponible' // Mensaje predeterminado para description
     const historial = Array.isArray(rastreo?.milestone) ? rastreo.milestone : []; // Default to an empty array if not an array
 

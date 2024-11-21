@@ -75,6 +75,8 @@ export const useValidation = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+        sessionStorage.removeItem('paquetes')
+        sessionStorage.removeItem('usuarios')
         setSpiner(true)
         const token = await autenticar(datos) || ''
         if (token?.token?.length > 0) {

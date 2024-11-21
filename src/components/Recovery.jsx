@@ -3,6 +3,7 @@ import paper from '../img/ags.png'
 import { useContext } from "react"
 import { UserContext } from "../Context/UserContext"
 import { ModalPassword } from "../widgets/Modal/ModalPassword"
+import { Footer } from "./Footer"
 
 export const Recovery = () => {
     const { Recover, onChangeRecover, cambio } = useContext(UserContext)
@@ -65,6 +66,7 @@ export const Recovery = () => {
                     </div>
                 </div>
             </section>
+            <Footer/>
         </>
     )
 }

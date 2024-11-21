@@ -1,7 +1,7 @@
-import { Button, Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import dog from '../../img/ags.png'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { UserContext } from '../../Context/UserContext'
 import { NavLink } from 'react-router-dom'
 
@@ -149,7 +149,7 @@ export const NavProfile = () => {
                             {userNavigation.map((item) => (
                                 <button
                                     key={item.name}
-                                    as="a"
+                                   
                                     onClick={logout}
                                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                                 >

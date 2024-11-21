@@ -1,7 +1,7 @@
 import axios from "axios"
 import Swal from "sweetalert2"
 
-const Api = 'https://paperdogback.onrender.com/usuarioexistemail'
+const Api = 'https://paperdogback-nl6v.onrender.com/usuarioexistemail'
 
 
 export const Valida = async (body) => {
@@ -12,12 +12,16 @@ export const Valida = async (body) => {
 
     try {
         const response = await axios.post(Api, body, { headers })
+        if(!response){
+            console.log(response)
+        }
+     
         return response.data
 
     } catch (error) {
         Swal.fire({
             title: "Error!",
-            text: error,
+            text: 'Usuario No encontrado',
             icon: "error"
         });
         console.error(error)

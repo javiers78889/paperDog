@@ -11,7 +11,7 @@ export const Cambiar = () => {
 
     const onChangeRecover = (event) => {
         setCambio({ ...cambio, [event.target.name]: event.target.value })
-        console.log(event.target.name, event.target.value)
+        
 
 
 
@@ -45,10 +45,10 @@ export const Cambiar = () => {
             "role": role,
             "plan": plan
         }
-        console.log(obj)
+       
         const response = await actualizameusuario(obj)
         if (response) {
-            console.log(response)
+       
             Swal.fire({
                 title: "Listo!",
                 text: 'Actualizado',

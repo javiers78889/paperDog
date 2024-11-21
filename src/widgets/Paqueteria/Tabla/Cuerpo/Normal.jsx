@@ -1,18 +1,21 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../../../Context/UserContext'
+import { generatePDF } from '../../../../hooks/usePDF'
+
 
 export const Normal = ({ n }) => {
+
     const { onCheck, onActualiza } = useContext(UserContext)
     return (
         <tr key={n.tracking} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
             <td className="w-4 px-4 py-3">
-            {n.estado === 'Entregado'?(
+                {n.estado === 'Entregado' ? (
                     ''
-                ):(<div className="flex items-center">
+                ) : (<div className="flex items-center">
                     <input
                         id={`checkbox-${n.tracking}`}
                         type="checkbox"
-                        onClick={()=>onCheck(n.id)}
+                        onClick={() => onCheck(n.id)}
                         className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
                     <label htmlFor={`checkbox-${n.tracking}`} className="sr-only">checkbox</label>
@@ -47,6 +50,12 @@ export const Normal = ({ n }) => {
             </td>
             <td className="px-4 py-2">{n.total}</td>
             <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{n.createdAt}</td>
+            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => generatePDF(n)}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+
+            </button></td>
         </tr>
     )
 }

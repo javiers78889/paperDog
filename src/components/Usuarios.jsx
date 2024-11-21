@@ -1,10 +1,9 @@
-import React from 'react'
-import { Cuerpo } from '../widgets/Paqueteria/Tabla/Cuerpo'
-import { Barrita } from '../widgets/Paqueteria/Barrita'
+
 import { ListaUsuarios } from '../widgets/Usuarios/ListaUsuarios'
 import { BarritaFoot } from '../widgets/Paqueteria/BarritaFoot'
 import { BarraUser } from '../widgets/Usuarios/BarraUser'
 import { ModalUser } from '../widgets/Modal/ModalUser'
+import { ModalUserActualiza } from '../widgets/Modal/ModalUserActualiza'
 
 export const Usuarios = () => {
     return (
@@ -14,6 +13,7 @@ export const Usuarios = () => {
              
                 <BarraUser/>
                 <ModalUser/>
+                <ModalUserActualiza/>
                 <ListaUsuarios />
                 <BarritaFoot />
                 

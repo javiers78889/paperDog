@@ -36,7 +36,7 @@ export const Login = () => {
                             </div>
                             <div className="flex items-center justify-between">
 
-                                <a href="#" className="text-sm font-medium text-white hover:underline dark:text-primary-500">Olvidó su Contraseña?</a>
+                                <Link to='/recovery' className="text-sm font-medium text-white hover:underline dark:text-primary-500">Olvidó su Contraseña?</Link>
                             </div>
                             {spiner ? (
                                 <div className="flex items-center justify-center  ">
@@ -49,7 +49,7 @@ export const Login = () => {
                             )}
 
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                No tienes cuenta aún? <a href="#" className="font-medium text-white hover:underline dark:text-primary-500">Regístrate</a>
+                                No tienes cuenta aún? <a href="https://wa.me/50767316173?text=Hola,%20estoy%20interesado%20en%20abrir%20un%20casillero" className="font-medium text-white hover:underline dark:text-primary-500">Regístrate</a>
                             </p>
                             <br />
                             <Link className="w-full text-white bg-red-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 my-4" to={"/"}>

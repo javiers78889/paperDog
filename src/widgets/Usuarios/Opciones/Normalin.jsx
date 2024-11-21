@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import  { useContext } from 'react'
 import { UserContext } from '../../../Context/UserContext'
 
 export const Normalin = ({n}) => {
-    const { onCheck, onActualiza } = useContext(UserContext)
+    const { onCheck } = useContext(UserContext)
     return (
         <tr key={n.tracking} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
             <td className="w-4 px-4 py-3">

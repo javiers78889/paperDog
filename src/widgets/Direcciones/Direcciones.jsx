@@ -21,7 +21,7 @@ export const Direcciones = () => {
                     <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                         <h3 className="mb-4 text-2xl font-semibold">Aérea Miami - Panamá</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                            Best option for personal use & for your next project.
+                            La mejor opcion si deseas comprar productos en pocas cantidades.
                         </p>
                         <div className="flex justify-center items-baseline my-8">
                             <span className="mr-2 text-5xl font-extrabold">$2.75</span>
@@ -70,7 +70,7 @@ export const Direcciones = () => {
                     <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                         <h3 className="mb-4 text-2xl font-semibold">Marítima Miami - Panamá</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                            Best option for personal use & for your next project.
+                            La mejor opcion si deseas comprar en grandes cantidades,o productos pesados.
                         </p>
                         <div className="flex justify-center items-baseline my-8">
                             <span className="mr-2 text-5xl font-extrabold">$12</span>

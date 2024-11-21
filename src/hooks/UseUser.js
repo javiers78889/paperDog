@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { findPaquetes } from "../Services/Tracking"
 import Swal from "sweetalert2"
 
+
 const initTracking = ''
 export const UseUser = () => {
     const [tracking, setTracking] = useState(initTracking)
@@ -11,6 +12,7 @@ export const UseUser = () => {
     const [filtro, setFiltro] = useState([])
     const [isOpen, setIsOpen] = useState(false);
     const [abrir, setAbrir] = useState(false)
+ 
 
     const onChange = (event) => {
         console.log(event.target.value)
@@ -31,6 +33,7 @@ export const UseUser = () => {
         setAbrir(!abrir)
 
     };
+ 
 
     const onInput = async () => {
         try {

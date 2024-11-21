@@ -6,6 +6,7 @@ import { CreatePackage, Edicion, Entregar } from "../Services/Paquetes";
 import Swal from "sweetalert2";
 import { ActualizarPaquete } from "../Services/ActualizarPaquetes";
 import { crearUsuario } from "../Services/Usuarios";
+import { actualizameusuario, EncontrarUsuario } from "../Services/ActualizarUsuario";
 
 const initialDatos = {
     "email": '',
@@ -31,6 +32,7 @@ export const useValidation = () => {
     const { email: emails, password } = datos
     const [capturar, setCapturar] = useState([])
     const { email: correo, track, peso: libra, tarifa: costoso, plan: planes } = capturar
+    const [dosabrir, setDosabrir] = useState(false)
 
     const onInputChange = (event) => {
         setDatos({ ...datos, [event.target.name]: event.target.value })
@@ -74,7 +76,7 @@ export const useValidation = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
         setSpiner(true)
-        const token = await autenticar(datos)||''
+        const token = await autenticar(datos) || ''
         if (token?.token?.length > 0) {
 
             setTupla(token)
@@ -83,10 +85,10 @@ export const useValidation = () => {
             setAuth(decoded)
             setReload(!reload)
         }
-        else{
+        else {
             setSpiner(false)
         }
-       
+
 
 
 
@@ -102,7 +104,7 @@ export const useValidation = () => {
 
     }
     const onCheck = (id) => {
-        console.log(id)
+
         setActualizar(id)
 
     }
@@ -112,14 +114,16 @@ export const useValidation = () => {
         }
         const response = await ActualizarPaquete(obj)
         if (response) {
-            setUpdate([])
+            setUpdate(response)
             setOpen(!open);
+            setValido(false)
         }
 
     };
 
-    const onCreateUser = async (event) => {
+    const onCreateUser = async (event, body) => {
         event.preventDefault()
+        console.log(body)
         console.log(update)
         await crearUsuario(update)
 
@@ -140,7 +144,7 @@ export const useValidation = () => {
             "id": actualizar,
             "estado": "Entregado"
         }
-        const respuesta = await Entregar(ob)
+        await Entregar(ob)
 
         setReload(!reload);
     }
@@ -195,6 +199,41 @@ export const useValidation = () => {
 
 
     }
+    const toggleActualiza = async () => {
+        const obj = {
+            "id": actualizar
+        }
+        const response = await EncontrarUsuario(obj)
+       
+        if (response) {
+            
+            setUpdate(response.exist)
+            
+            setDosabrir(!dosabrir)
+          
+        }
+        else {
+            console.log('error')
+        }
+
+     
+
+    }
+    const onUpdateUser = async (event) => {
+        event.preventDefault()
+        console.log(update)
+        const response = await actualizameusuario(update)
+        console.log(response)
+        if(response){
+            setValido(false)
+            setReload(!reload)
+            setDosabrir(!dosabrir)
+        }
+    }
+
+    const actuaCierra = () => {
+        setDosabrir(!dosabrir)
+    }
 
     useEffect(() => {
         data();
@@ -222,7 +261,7 @@ export const useValidation = () => {
         costoso,
         planes, contrasena, usuario,
         role,
-        plan, onCreateUser
+        plan, onCreateUser, toggleActualiza, dosabrir, actuaCierra,onUpdateUser
 
     }
 }

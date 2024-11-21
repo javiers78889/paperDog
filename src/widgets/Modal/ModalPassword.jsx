@@ -1,9 +1,12 @@
-import { useContext } from "react"
-import { UserContext } from "../../Context/UserContext"
+import { useContext } from 'react'
+import { UserContext } from '../../Context/UserContext'
 
-export const ModalUser = () => {
-    const { abrir, toggleUser, onChangeModal, email, usuario, contrasena, role, plan, onCreateUser } = useContext(UserContext)
-    return abrir ? (
+export const ModalPassword = () => {
+    const { aprueba,passClose,cambio,onChangeRecover:onChangeModal,Cambiaso:onUpdateUser} = useContext(UserContext)
+    const{email,usuario,contrasena}=cambio
+
+
+    return aprueba ? (
         <>
             <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
 
@@ -19,12 +22,12 @@ export const ModalUser = () => {
                         {/* Encabezado del modal */}
                         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                                Crea Un Usuario
+                                Usuario Encontrado!
                             </h3>
                             <button
                                 type="button"
                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                onClick={toggleUser}
+                                onClick={passClose}
                             >
                                 <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                     <path
@@ -41,8 +44,8 @@ export const ModalUser = () => {
 
                         {/* Cuerpo del modal */}
                         <div className="p-4 md:p-5">
-                            <form className="space-y-4" onSubmit={onCreateUser}>
-                              
+                            <form className="space-y-4" onSubmit={onUpdateUser}>
+
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Email de Cliente
@@ -53,6 +56,7 @@ export const ModalUser = () => {
                                         id="email"
                                         value={email}
                                         onChange={onChangeModal}
+                                        disabled
                                         placeholder="Email del cliente"
 
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
@@ -71,6 +75,7 @@ export const ModalUser = () => {
                                         onChange={onChangeModal}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         placeholder="tracking"
+                                        disabled
                                         required
                                     />
                                 </div>
@@ -82,47 +87,24 @@ export const ModalUser = () => {
                                         type="password"
                                         name="password"
                                         id="password"
+                                        
                                         value={contrasena}
                                         onChange={onChangeModal}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                        placeholder="Ingresa El peso o volúmen"
+                                        placeholder="La Nueva Contrasena"
                                         required
                                     />
                                 </div>
 
 
-                                <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Role
-                                    </label>
-                                    <select id="countries" value={role} onChange={onChangeModal} name='role' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                                        <option value="">Elige un Role</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
-
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Plan
-                                    </label>
-                                    <select id="countries" value={plan} onChange={onChangeModal} name='plan' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                                        <option value="">Elige un Plan</option>
-                                        <option value="Entregado">Aereo</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="pendiente">Maritimo</option>
-
-                                    </select>
-                                </div>
+                         
 
 
                                 <button
                                     type="submit"
                                     className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 >
-                                    Crear Usuario
+                                    Actualizar Usuario
                                 </button>
 
                             </form>

@@ -69,14 +69,9 @@ export const Edicion = async (body) => {
     }
     try {
         const response = await axios.put(Api, body, { headers })
-        if (response) {
-            Swal.fire({
-                title: "Actualizado!",
-                text: response.data.mensaje,
-                icon: "success"
-            });
+   
             return response.data.mensaje
-        }
+        
     } catch (error) {
         Swal.fire({
             title: "Lo sentimos!",

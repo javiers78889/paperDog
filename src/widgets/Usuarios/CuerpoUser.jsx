@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import  { useContext } from 'react'
 import { Filtrado } from '../Paqueteria/Tabla/Cuerpo/Filtrado';
 import { UserContext } from '../../Context/UserContext';
 import { Normalin } from './Opciones/Normalin';

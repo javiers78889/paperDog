@@ -83,11 +83,11 @@ export const generatePDF = async (body) => {
 
         // Información de la cuenta bancaria
         doc.setFontSize(9);
-        doc.text("ASHLEY MOSQUERA", 15, finalY + 70);
-        doc.text("04-33-98-768227-8", 15, finalY + 75);
+        doc.text("JAVIER SOLIS", 15, finalY + 70);
+        doc.text("04-72-96-761617-3", 15, finalY + 75);
         doc.text("CTA AHORRO", 15, finalY + 80);
         doc.text("BANCO GENERAL.", 15, finalY + 85);
-        doc.text("YAPPY: 6547-4870", 15, finalY + 90);
+        doc.text("YAPPY: 6659-2722", 15, finalY + 90);
 
         const pdfData = doc.output("bloburl");
         window.open(pdfData, "_blank");

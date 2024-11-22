@@ -97,7 +97,7 @@ export const useValidation = () => {
 
     const logout = () => {
         setValido(true)
-        setReload(false)
+        setSpiner(false)
         sessionStorage.removeItem('token')
 
 

@@ -73,7 +73,7 @@ export const generatePDF = async (body) => {
         const finalY = doc.lastAutoTable.finalY || 70;
         doc.setFontSize(20);
         doc.setFont("helvetica", "bold");
-        doc.text(`TOTAL FACTURA $ ${pack.total} USD`, 15, finalY + 20);
+        doc.text(`TOTAL FACTURA $ ${pack.total.toFixed(2)} USD`, 15, finalY + 20);
 
         // Condiciones de pago
         doc.setFontSize(10);

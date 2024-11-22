@@ -75,8 +75,6 @@ export const useValidation = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        sessionStorage.removeItem('paquetes')
-        sessionStorage.removeItem('usuarios')
         setSpiner(true)
         const token = await autenticar(datos) || ''
         if (token?.token?.length > 0) {
@@ -99,6 +97,7 @@ export const useValidation = () => {
 
     const logout = () => {
         setValido(true)
+        setReload(false)
         sessionStorage.removeItem('token')
 
 
@@ -223,10 +222,13 @@ export const useValidation = () => {
     }
     const onUpdateUser = async (event) => {
         event.preventDefault()
-        console.log(update)
-        const response = await actualizameusuario(update)
+        const { email, usuario, role, plan } = update
+        const obj = {
+            id, email, usuario, role, plan
+        }
+        const response = await actualizameusuario(obj)
         console.log(response)
-        if(response){
+        if (response) {
             setValido(false)
             setReload(!reload)
             setDosabrir(!dosabrir)

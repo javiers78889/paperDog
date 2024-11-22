@@ -232,6 +232,7 @@ export const useValidation = () => {
             setValido(false)
             setReload(!reload)
             setDosabrir(!dosabrir)
+            setUpdate([])
         }
     }
 

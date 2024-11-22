@@ -48,7 +48,7 @@ export const ConteoPersonas = () => {
                     />
                 </svg>
             </div>
-            <p className="mt-2 text-balance text-5xl font-semibold tracking-tight text-yellow-400 sm:text-6xl mb-5 ">
+            <p className="mt-2 text-balance text-5xl font-semibold tracking-tight text-yellow-300 sm:text-6xl mb-5 ">
                 Nuestros Clientes
 
             </p>
@@ -75,7 +75,7 @@ export const ConteoPersonas = () => {
                     {counters.map(stat => (
                         <div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
                             <dt className="text-base/7 text-white">{stat.name}</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-purple-500 sm:text-5xl">
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-yellow-400 sm:text-5xl">
                                 {stat.current}
                             </dd>
                         </div>

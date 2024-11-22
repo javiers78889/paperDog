@@ -39,7 +39,7 @@ function classNames(...classes) {
 
 export const Planes = () => {
     return (
-        <div id='planes' className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8 bg-gradient-to-b from-purple-500 to-black">
+        <div id='planes' className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8 bg-gradient-to-b from-purple-300 to-purple-600">
             <div aria-hidden="true" className="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl">
                 <div
                     style={{

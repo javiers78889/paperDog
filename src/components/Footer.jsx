@@ -22,10 +22,10 @@ export const Footer = () => {
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Sucursales</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
-                                    <a href="https://flowbite.com/" className="hover:underline">Chame</a>
+                                    <a href="https://wa.me/50767316173?text=Hola,%20estoy%20interesado%20en%20abrir%20un%20casillero%20en%20chame" className="hover:underline">Chame</a>
                                 </li>
                                 <li>
-                                    <a href="https://tailwindcss.com/" className="hover:underline">Chorrera</a>
+                                    <a href="https://wa.me/50767316173?text=Hola,%20estoy%20interesado%20en%20abrir%20un%20casillero%20en%20chorrera" className="hover:underline">Chorrera</a>
                                 </li>
                             </ul>
                         </div>
@@ -56,7 +56,7 @@ export const Footer = () => {
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-                        © 2024 <a href="https://flowbite.com/" className="hover:underline">PaperDog Shopping™</a>. Todos Los Derechos Reservados.
+                        © 2024 <a href="#" className="hover:underline">PaperDog Shopping™</a>. Todos Los Derechos Reservados.
                     </span>
                     
                 </div>

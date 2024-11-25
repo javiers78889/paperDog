@@ -53,7 +53,7 @@ export const generatePDF = async (body) => {
         doc.text("PANAMA OESTE, BEJUCO", 150, 55);
         doc.text("PANAMA OESTE, BARRIO BALBOA", 150, 60);
         doc.text("TEL: 6731-6173", 150, 65);
-        doc.text("ALTERNATIVO: 6659-272", 150, 70);
+        doc.text("ALTERNATIVO: 6659-2722", 150, 70);
 
         // Crear la tabla con los datos
         doc.autoTable({

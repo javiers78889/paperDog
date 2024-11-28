@@ -3,7 +3,7 @@ import Swal from "sweetalert2"
 
 const Api = 'https://paperdogback-nl6v.onrender.com/paquetes'
 
-let respuesta;
+
 
 export const CreatePackage = async (body) => {
     const storedToken = sessionStorage.getItem('token')
@@ -19,7 +19,7 @@ export const CreatePackage = async (body) => {
     } catch (error) {
         Swal.fire({
             title: "Error!",
-            text: "este paquete ya existe",
+            text: "paquete duplicado o usuario no existe",
             icon: "error"
         });
         console.error(error)

@@ -124,11 +124,26 @@ export const useValidation = () => {
 
     const onCreateUser = async (event) => {
         event.preventDefault()
-        await crearUsuario(update)
-        setValido(false)
-        setReload(!reload)
-
-        setUpdate([])
+        const response = await crearUsuario(update)
+        if (response.data.mensaje === 'Este Usuario ya existe') {
+            Swal.fire({
+                title: "Usuario ya existe",
+                text: response.data.mensaje, // Correcto acceso al mensaje
+                icon: "error",
+            });
+            
+        } else {
+            Swal.fire({
+                title: "Usuario Creado",
+                text: response.data.mensaje, // Correcto acceso al mensaje
+                icon: "success",
+            });
+            setValido(false)
+            setReload(!reload)
+            setUpdate([])
+        }
+     
+       
     }
     const cerrar = () => {
         setOpen(!open);
@@ -205,19 +220,19 @@ export const useValidation = () => {
             "id": actualizar
         }
         const response = await EncontrarUsuario(obj)
-       
+
         if (response) {
-            
+
             setUpdate(response.exist)
-            
+
             setDosabrir(!dosabrir)
-          
+
         }
         else {
             console.log('error')
         }
 
-     
+
 
     }
     const onUpdateUser = async (event) => {
@@ -266,7 +281,7 @@ export const useValidation = () => {
         costoso,
         planes, contrasena, usuario,
         role,
-        plan, onCreateUser, toggleActualiza, dosabrir, actuaCierra,onUpdateUser
+        plan, onCreateUser, toggleActualiza, dosabrir, actuaCierra, onUpdateUser
 
     }
 }

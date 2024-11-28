@@ -12,13 +12,7 @@ export const crearUsuario = async (body) => {
     try {
         const response = await axios.post(Api, body, { headers });
         // Verificar si la respuesta fue exitosa
-        if (response.status === 200) {
-            Swal.fire({
-                title: "Usuario creado",
-                text: response.data.mensaje, // Correcto acceso al mensaje
-                icon: "success",
-            });
-        }
+       return response
     } catch (error) {
         // Manejo detallado del error
         if (error.response) {

@@ -60,7 +60,7 @@ export const generatePDF = async (body) => {
             startY: 80,
             head: [['LIBRAS.', 'DESCRIPCIÓN', 'TARIFA', 'TOTAL']],
             body: [
-                [pack.peso, pack.tracking, pack.plan==='aereo'?('2.50'):'15', pack.total.toFixed(2)]
+                [pack.peso, pack.tracking, pack.plan==='aereo'?(pack.total/ pack.peso).toFixed(2):'15', pack.total.toFixed(2)]
             ],
             headStyles: {
                 fillColor: [128, 0, 128],

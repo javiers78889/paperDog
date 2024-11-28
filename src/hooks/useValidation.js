@@ -173,7 +173,7 @@ export const useValidation = () => {
 
         const pesado = Number(peso)
         const estado = 'pendiente'
-        const total = parseFloat((Number(tarifa) * peso).toFixed(1));
+        const total = parseFloat((Number(tarifa) * peso).toFixed(2));
 
         // Objeto a enviar
         const datos = {
